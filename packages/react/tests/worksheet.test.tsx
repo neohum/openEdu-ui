@@ -147,18 +147,20 @@ describe("AnnotatableText", () => {
 });
 
 describe("TestPaperLayout", () => {
-  it("puts the passage before the questions and makes it collapsible", () => {
+  it("puts the passage and palette in a side column before the questions, and makes the passage collapsible", () => {
     const { container } = render(<TestPaperLayout passage={<p>지문 본문</p>} questions={<p>문항들</p>} />);
     const details = container.querySelector("details")!;
     expect(details).toHaveAttribute("open");
     expect(within(details).getByText("지문")).toBeInTheDocument();
-    const order = [...container.querySelectorAll(".oe-paper > *")].map((e) => e.className);
-    expect(order.indexOf("oe-paper__passage")).toBeLessThan(order.indexOf("oe-paper__questions"));
+    const side = container.querySelector(".oe-paper__side")!;
+    const questions = container.querySelector(".oe-paper__questions")!;
+    expect(side.contains(details)).toBe(true);
+    expect(side.compareDocumentPosition(questions) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it("stacks on narrow screens and goes two-column from 640px up (CSS contract)", () => {
     const css = readFileSync(join(import.meta.dirname, "../src/worksheet/worksheet.css"), "utf8");
     expect(css).toMatch(/\.oe-paper \{[^}]*grid-template-columns: 1fr;/s);
-    expect(css).toMatch(/@media \(min-width: 40\.0625rem\)[\s\S]*\.oe-paper\[data-has-passage\] \{ grid-template-columns: minmax\(0, 1fr\) minmax\(0, 1fr\)/);
+    expect(css).toMatch(/@media \(min-width: 40\.0625rem\)[\s\S]*\.oe-paper\[data-has-side\] \{ grid-template-columns: minmax\(0, 1fr\) minmax\(0, 1fr\)/);
   });
 });

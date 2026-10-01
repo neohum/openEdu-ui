@@ -4,7 +4,7 @@
 }
 
 @layer components {
-  .oe-print { color: var(--color-fg); background: var(--color-bg); font-size: var(--font-size-body); line-height: var(--font-leading-body); }
+  .oe-print { word-break: keep-all; color: var(--color-fg); background: var(--color-bg); font-size: var(--font-size-body); line-height: var(--font-leading-body); }
   .oe-print__header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--color-fg); padding-bottom: var(--space-2); margin-bottom: var(--space-6); }
   .oe-print__header h1 { margin: 0; font-size: var(--font-size-2xl); }
   .oe-print__who { margin: 0; }

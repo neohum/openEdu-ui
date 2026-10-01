@@ -146,6 +146,6 @@ describe("board touch targets", () => {
     expect(css("radial-menu.css")).toMatch(/\.oe-radial__item[^}]*min-height: var\(--target-min\)/s);
     expect(css("radial-menu.css")).toMatch(/\.oe-radial__item[^}]*min-width: var\(--target-min\)/s);
     expect(css("focus-curtain.css")).toMatch(/\.oe-curtain__handle[^}]*var\(--target-min\)/s);
-    expect(read("primitives/button.css")).toMatch(/\.oe-button \{[^}]*min-height: var\(--target-min\)/s);
+    expect(read("primitives/button.css")).toMatch(/\.oe-button \{[^}]*min-height: var\(--target-min\)[^}]*min-width: var\(--target-min\)/s);
   });
 });

@@ -18,6 +18,25 @@
 
 React 19 + TypeScript + 순수 CSS, pnpm 워크스페이스(`@openedu/*`). 토큰은 CSS 변수로 빌드되어 프레임워크와 무관하게 쓸 수 있습니다.
 
+## 쇼케이스
+
+```bash
+pnpm install
+pnpm --filter showcase dev        # 개발 서버
+pnpm capture                      # production 빌드 → 실제 Chrome으로 4개 표면 캡처·검사 (screenshots/)
+pnpm print:sample                 # 샘플 학습지를 A4 PDF로 생성 (out/print/)
+```
+
+| 표면 | 화면 |
+| --- | --- |
+| board | ![board](screenshots/board.png) |
+| desktop | ![desktop](screenshots/desktop.png) |
+| mobile | ![mobile](screenshots/mobile.png) |
+
+## 아이콘
+
+컴포넌트는 [Flaticon UIcons](https://www.flaticon.com/uicons) Regular Rounded(`fi fi-rr-*`) 클래스를 사용합니다. 아이콘 글꼴은 이 저장소에 포함하지 않으며, 사용하는 쪽에서 `@flaticon/flaticon-uicons`를 설치해 Flaticon 라이선스(출처 표기 등)에 따라 사용해야 합니다. 이 저장소의 MIT 라이선스는 아이콘 글꼴에 적용되지 않습니다.
+
 ## 라이선스
 
 [MIT](./LICENSE)

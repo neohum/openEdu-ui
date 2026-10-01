@@ -1,0 +1,18 @@
+# Reference production config for the built showcase (apps/showcase/dist).
+# Mirrors scripts/ops/serve-showcase.ts, which is what the capture check actually exercises.
+:8080 {
+	root * dist
+	encode zstd gzip
+
+	@hashed path /assets/*
+	header @hashed Cache-Control "public, max-age=31536000, immutable"
+
+	@static path *.svg *.png *.ico *.webmanifest
+	header @static Cache-Control "public, max-age=86400"
+
+	@html path / /index.html
+	header @html Cache-Control "no-cache"
+
+	try_files {path} /index.html
+	file_server
+}
