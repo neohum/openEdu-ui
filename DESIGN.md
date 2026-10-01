@@ -5,18 +5,30 @@
 
 ## Tokens
 
-| Token            | Value             | Use                     |
-| ---------------- | ----------------- | ----------------------- |
-| `color.bg`       | `#0b0c0f`         | page background         |
-| `color.fg`       | `#e7e9ee`         | primary text            |
-| `color.muted`    | `#8a8f9c`         | secondary text          |
-| `color.accent`   | `#7c8cff`         | interactive / focus     |
-| `color.danger`   | `#ff5d6c`         | destructive             |
-| `radius.sm`      | `6px`             | inputs, small cards     |
-| `radius.md`      | `10px`            | cards, modals           |
-| `space.unit`     | `4px`             | base spacing grid       |
-| `font.sans`      | system stack + `"Apple SD Gothic Neo", "Noto Sans KR"` | body & UI (Korean-capable) |
-| `font.mono`      | ui-monospace      | code, IDs               |
+Source of truth: `packages/tokens/src/tokens.json` (DTCG format), built to
+`packages/tokens/dist/tokens.css` (`pnpm --filter @openedu/tokens build`).
+Components use only these variables — no literals.
+
+| Token (CSS variable)                | Light       | Dark        | Use                      |
+| ----------------------------------- | ----------- | ----------- | ------------------------ |
+| `--color-bg`                        | `#f8fafc`   | `#0b0c0f`   | page background          |
+| `--color-surface`                   | `#ffffff`   | `#14161b`   | cards, panels            |
+| `--color-surface-sunken`            | `#f1f5f9`   | `#0f1115`   | inset areas              |
+| `--color-fg`                        | `#0f172a`   | `#e7e9ee`   | primary text             |
+| `--color-fg-muted`                  | `#475569`   | `#9aa0ad`   | secondary text           |
+| `--color-border`                    | `#e2e8f0`   | `#262a33`   | dividers                 |
+| `--color-accent` / `-accent-fg`     | `#2f4fd0` / `#ffffff` | `#8b9bff` / `#0b0c0f` | interactive / focus |
+| `--color-danger` / `-danger-fg`     | `#b91c2b` / `#ffffff` | `#ff6b78` / `#0b0c0f` | destructive |
+| `--color-success`                   | `#157347`   | `#4ade80`   | success                  |
+| `--radius-sm / md / lg / full`      | `6 / 10 / 16 / 9999px` | same | inputs / cards / dialogs / pills |
+| `--space-unit`, `--space-1..12`     | `4px`, `unit × n` | same | spacing grid (4/8pt)     |
+| `--font-size-xs … 4xl`              | `0.75 … 2.25rem × --font-scale` | same | type scale |
+| `--font-sans`                       | system stack + `"Apple SD Gothic Neo", "Noto Sans KR"` | same | body & UI (Korean-capable) |
+| `--font-mono`                       | ui-monospace | same       | code, IDs                |
+
+Rules enforced by tests: no pure black, and fg / fg-muted / accent text meet
+WCAG AA (4.5:1) on their backgrounds in both themes. Dark mode follows
+`prefers-color-scheme` and can be forced with `data-theme="light|dark"`.
 
 ## Components — contract
 
@@ -28,23 +40,23 @@
 
 ### Input
 - label is **never** placeholder-only
-- error renders below in `color.danger`, with `aria-describedby` wired
+- error renders below in `--color-danger`, with `aria-describedby` wired
 
 ### Card
-- padding `space.unit * 4`, radius `radius.md`
-- no shadow; uses a 1px `color.muted` border at 24% opacity
+- padding `--space-4`, radius `--radius-md`
+- surface color on `--color-bg`; separation by surface contrast first, 1px `--color-border` only when needed
 
 ## Language & encoding
 
 - pages declare `<meta charset="utf-8">` and default to `<html lang="ko">`
 - UI copy defaults to Korean
 - Korean headings/labels use `word-break: keep-all` so words don't split mid-eojeol
-- the `font.sans` stack always carries Korean-capable fallbacks — never ship a
+- the `--font-sans` stack always carries Korean-capable fallbacks — never ship a
   Latin-only webfont without them
 
 ## Layout rules
 
-- 8px baseline grid (`space.unit * 2`)
+- 8px baseline grid (`--space-2`)
 - content max-width `1180px`
 - side padding clamps `clamp(16px, 4vw, 32px)`
 
@@ -65,7 +77,7 @@ framework default or pulled from a generic pack.
   family; `currentColor` so tokens drive the color. Never mix icon sets or use
   ad-hoc inline SVG icons.
 - **Favicon / logo:** derived from the openEdu-ui identity and
-  `color.accent` on `color.bg`; author the SVG first, export raster sizes
+  `--color-accent` on `--color-bg`; author the SVG first, export raster sizes
   from it.
 - **Illustrations, empty states, OG images:** composed from the token palette
   above — no stock photos, no third-party mascots, no watermarked placeholders.
@@ -77,7 +89,7 @@ first deploy:
 
 | Asset                       | Source of truth                                    |
 | --------------------------- | -------------------------------------------------- |
-| `favicon.svg` (+ `.ico`, 32/180/192/512 PNG) | logo mark, `color.accent` on `color.bg` |
+| `favicon.svg` (+ `.ico`, 32/180/192/512 PNG) | logo mark, `--color-accent` on `--color-bg` |
 | `logo.svg` (mark + wordmark variants)        | project identity, token palette         |
 | `apple-touch-icon.png` (180×180)             | exported from `favicon.svg`             |
 | PWA/manifest icons (192/512)                 | exported from `favicon.svg`             |
