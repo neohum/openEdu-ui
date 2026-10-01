@@ -1,0 +1,34 @@
+{
+  "$description": "Surface profiles override scale variables only. Values marked provisional (board font/target) are unverified against literature — see ROADMAP decision 4.",
+  "surface": {
+    "desktop": {
+      "space-unit": "4px",
+      "font-scale": 1,
+      "target-min": "44px"
+    },
+    "mobile": {
+      "space-unit": "4px",
+      "font-scale": 1,
+      "target-min": "48px"
+    },
+    "board": {
+      "space-unit": "8px",
+      "font-scale": 2.4,
+      "target-min": "64px",
+      "target-comfortable": "80px"
+    },
+    "print": {
+      "space-unit": "4px",
+      "font-scale": 0.9,
+      "target-min": "0px",
+      "color-bg": "#ffffff",
+      "color-surface": "#ffffff",
+      "color-surface-sunken": "#f1f5f9",
+      "color-fg": "#111827",
+      "color-fg-muted": "#374151",
+      "color-border": "#9ca3af",
+      "elevation-1": "none",
+      "elevation-2": "none"
+    }
+  }
+}
