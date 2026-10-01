@@ -1,0 +1,9 @@
+{
+  "id": "q-104", "type": "ordering", "points": 3,
+  "stem": "식물이 자라는 순서대로 배열하시오.",
+  "items": [
+    { "id": "s", "content": "싹이 튼다" }, { "id": "d", "content": "씨앗을 심는다" },
+    { "id": "f", "content": "꽃이 핀다" }
+  ],
+  "answer": ["d", "s", "f"]
+}

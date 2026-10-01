@@ -1,0 +1,10 @@
+{
+  "id": "q-105", "type": "hotspot", "points": 2,
+  "stem": "지도에서 한강이 흐르는 곳을 누르시오.",
+  "image": { "src": "map.png", "alt": "한반도 지도", "width": 800, "height": 600 },
+  "spots": [
+    { "id": "h1", "shape": "rect", "x": 300, "y": 200, "w": 120, "h": 60 },
+    { "id": "h2", "shape": "circle", "cx": 600, "cy": 400, "r": 40 }
+  ],
+  "answer": ["h1"]
+}

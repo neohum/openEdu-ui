@@ -1,0 +1,167 @@
+{
+  "id": "paper-1",
+  "title": "국어·수학 확인 학습지",
+  "passages": [
+    {
+      "id": "passage-1",
+      "title": "손으로 쓰기",
+      "content": "손으로 문장을 따라 쓰면 구조가 눈에 들어온다."
+    }
+  ],
+  "items": [
+    {
+      "id": "q-101",
+      "type": "choice",
+      "points": 4,
+      "passageRef": "passage-1",
+      "stem": "다음 글을 읽고 글쓴이의 중심 생각으로 가장 알맞은 것을 고르시오.",
+      "options": [
+        {
+          "id": "1",
+          "content": "책을 눈으로만 읽는 것이 가장 효과적이다."
+        },
+        {
+          "id": "2",
+          "content": "직접 문장을 따라 쓰며 구조를 익히는 것이 중요하다."
+        },
+        {
+          "id": "3",
+          "content": "받아쓰기 시험을 매일 반복해야 한다."
+        },
+        {
+          "id": "4",
+          "content": "속독을 통해 많은 분량을 읽어야 한다."
+        }
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "2문단에서 손으로 쓰는 행위의 시각·인지적 효과를 강조하고 있습니다."
+    },
+    {
+      "id": "q-102",
+      "type": "cloze",
+      "points": 3,
+      "stem": "빈칸에 알맞은 말을 쓰시오.",
+      "text": "물은 {{1}}도에서 끓고, {{2}}도에서 언다.",
+      "blanks": [
+        {
+          "id": "1",
+          "answers": [
+            "100"
+          ]
+        },
+        {
+          "id": "2",
+          "answers": [
+            "0",
+            "영"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-105",
+      "type": "hotspot",
+      "points": 2,
+      "stem": "지도에서 한강이 흐르는 곳을 누르시오.",
+      "image": {
+        "src": "map.png",
+        "alt": "한반도 지도",
+        "width": 800,
+        "height": 600
+      },
+      "spots": [
+        {
+          "id": "h1",
+          "shape": "rect",
+          "x": 300,
+          "y": 200,
+          "w": 120,
+          "h": 60
+        },
+        {
+          "id": "h2",
+          "shape": "circle",
+          "cx": 600,
+          "cy": 400,
+          "r": 40
+        }
+      ],
+      "answer": [
+        "h1"
+      ]
+    },
+    {
+      "id": "q-103",
+      "type": "matching",
+      "points": 3,
+      "stem": "나라와 수도를 알맞게 연결하시오.",
+      "left": [
+        {
+          "id": "a",
+          "content": "대한민국"
+        },
+        {
+          "id": "b",
+          "content": "일본"
+        }
+      ],
+      "right": [
+        {
+          "id": "x",
+          "content": "도쿄"
+        },
+        {
+          "id": "y",
+          "content": "서울"
+        }
+      ],
+      "answer": [
+        {
+          "left": "a",
+          "right": "y"
+        },
+        {
+          "left": "b",
+          "right": "x"
+        }
+      ]
+    },
+    {
+      "id": "q-104",
+      "type": "ordering",
+      "points": 3,
+      "stem": "식물이 자라는 순서대로 배열하시오.",
+      "items": [
+        {
+          "id": "s",
+          "content": "싹이 튼다"
+        },
+        {
+          "id": "d",
+          "content": "씨앗을 심는다"
+        },
+        {
+          "id": "f",
+          "content": "꽃이 핀다"
+        }
+      ],
+      "answer": [
+        "d",
+        "s",
+        "f"
+      ]
+    },
+    {
+      "id": "q-106",
+      "type": "short-answer",
+      "points": 2,
+      "stem": "삼각형의 내각의 합은 몇 도입니까?",
+      "answers": [
+        "180",
+        "180도"
+      ]
+    }
+  ]
+}

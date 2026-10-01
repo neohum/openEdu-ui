@@ -1,0 +1,7 @@
+{
+  "id": "q-103", "type": "matching", "points": 3,
+  "stem": "나라와 수도를 알맞게 연결하시오.",
+  "left": [{ "id": "a", "content": "대한민국" }, { "id": "b", "content": "일본" }],
+  "right": [{ "id": "x", "content": "도쿄" }, { "id": "y", "content": "서울" }],
+  "answer": [{ "left": "a", "right": "y" }, { "left": "b", "right": "x" }]
+}
