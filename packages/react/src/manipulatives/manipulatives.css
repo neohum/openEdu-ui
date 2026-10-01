@@ -1,6 +1,6 @@
 @layer components {
   .oe-blocks, .oe-fraction { display: flex; flex-direction: column; gap: var(--space-4); }
-  .oe-blocks__places { display: flex; gap: var(--space-6); }
+  .oe-blocks__places { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-6); }
   .oe-blocks__place { display: flex; flex-direction: column; gap: var(--space-2); align-items: center; }
   .oe-blocks__stack { display: flex; flex-wrap: wrap; gap: var(--space-1); min-height: var(--space-12); max-width: var(--space-12); align-content: flex-end; }
   .oe-blocks__controls, .oe-fraction__controls { display: flex; gap: var(--space-2); }

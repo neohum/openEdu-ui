@@ -1,7 +1,7 @@
 # openEdu-ui 로드맵
 
 ## Intent
-전자칠판·웹·앱·인터랙티브 콘텐츠·종이 학습지(인쇄)까지 **하나의 디자인 토큰과 하나의 문항 스키마**로 만드는 교육용 디자인 시스템을 만든다. 디자이너 없이도 "표면 프로파일(board / desktop / mobile / print)"만 고르면 간격·글자 크기·터치 타겟이 자동으로 맞춰지고, 같은 문항 JSON이 화면과 종이에서 모두 렌더링되며, Storybook 쇼케이스를 production 빌드로 띄워 스크린샷으로 확인할 수 있다.
+전자칠판·웹·앱·인터랙티브 콘텐츠·종이 학습지(인쇄)까지 **하나의 디자인 토큰과 하나의 문항 스키마**로 만드는 교육용 디자인 시스템을 만든다. 디자이너 없이도 "표면 프로파일(board / desktop / mobile / print)"만 고르면 간격·글자 크기·터치 타겟이 자동으로 맞춰지고, 같은 문항 JSON이 화면과 종이에서 모두 렌더링되며, 쇼케이스 앱을 production 빌드로 띄워 스크린샷으로 확인할 수 있다.
 
 ## 근거 연구 → 설계 원칙 (요약)
 | 연구/원칙 | 디자인 시스템에서의 구현 |
@@ -49,7 +49,7 @@
 ## Steps
 
 ### Step 1: workspace-scaffold
-- Goal: pnpm 워크스페이스, TypeScript, vitest, ESLint 골격을 만들고(Storybook은 Step 12에서 추가) `pnpm typecheck`·`pnpm test`가 빈 패키지에서 통과한다
+- Goal: pnpm 워크스페이스, TypeScript, vitest, ESLint 골격을 만들고(쇼케이스는 Step 12에서 Vite 앱으로 추가) `pnpm typecheck`·`pnpm test`가 빈 패키지에서 통과한다
 - Files: package.json, pnpm-workspace.yaml, tsconfig.base.json, eslint.config.js, .gitignore, packages/tokens/package.json, packages/core/package.json, packages/react/package.json, packages/content/package.json, packages/print/package.json, apps/showcase/package.json
 - Acceptance: AC-1: `pnpm -r typecheck`와 `pnpm -r test`가 exit 0 이다 / AC-2: 루트 `package.json`에 lint·typecheck·test 스크립트가 정의되고 `pnpm lint`가 exit 0 이다
 - Tests: pnpm install && pnpm -r typecheck && pnpm -r test

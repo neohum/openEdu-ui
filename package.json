@@ -10,7 +10,8 @@
     "build": "pnpm -r build",
     "lint:tokens": "node scripts/ops/spacing-lint.ts",
     "test:scripts": "node --test scripts/ops/spacing-lint.test.ts",
-    "print:sample": "tsx scripts/ops/print-pdf.ts --sample"
+    "print:sample": "tsx scripts/ops/print-pdf.ts --sample",
+    "capture": "pnpm --filter showcase build && tsx scripts/ops/capture-showcase.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
