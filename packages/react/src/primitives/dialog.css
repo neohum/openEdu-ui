@@ -1,0 +1,18 @@
+@layer components {
+  .oe-dialog__overlay { position: fixed; inset: 0; background: color-mix(in srgb, var(--color-bg) 70%, transparent); }
+  .oe-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 40rem);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    box-shadow: var(--elevation-2);
+  }
+  .oe-dialog__header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+  .oe-dialog__title { margin: 0; font-size: var(--font-size-xl); line-height: var(--font-leading-tight); }
+  .oe-dialog__description { color: var(--color-fg-muted); }
+}
