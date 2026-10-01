@@ -1,10 +1,10 @@
 # openEdu-ui 로드맵
 
 ## Intent
-전자칠판·웹·앱·인터랙티브 콘텐츠·종이 학습지(인쇄)까지 **하나의 디자인 토큰과 하나의 문항 스키마**로 만드는 교육용 UI 라이브러리를 만든다. 디자이너 없이도 "표면 프로파일(board / desktop / mobile / print)"만 고르면 간격·글자 크기·터치 타겟이 자동으로 맞춰지고, 같은 문항 JSON이 화면과 종이에서 모두 렌더링되며, Storybook 쇼케이스를 production 빌드로 띄워 스크린샷으로 확인할 수 있다.
+전자칠판·웹·앱·인터랙티브 콘텐츠·종이 학습지(인쇄)까지 **하나의 디자인 토큰과 하나의 문항 스키마**로 만드는 교육용 디자인 시스템을 만든다. 디자이너 없이도 "표면 프로파일(board / desktop / mobile / print)"만 고르면 간격·글자 크기·터치 타겟이 자동으로 맞춰지고, 같은 문항 JSON이 화면과 종이에서 모두 렌더링되며, Storybook 쇼케이스를 production 빌드로 띄워 스크린샷으로 확인할 수 있다.
 
 ## 근거 연구 → 설계 원칙 (요약)
-| 연구/원칙 | 라이브러리에서의 구현 |
+| 연구/원칙 | 디자인 시스템에서의 구현 |
 | --- | --- |
 | 심미적 사용성·게슈탈트 | 4/8pt 스케일 토큰만 허용(`spacing-lint`), 근접성 기반 레이아웃 프리미티브(Stack/Cluster/Grid) |
 | 힉·밀러 | 컴포넌트당 Primary 액션 1개 규칙, 문제지 한 화면 1~3문항 + 팔레트 |
@@ -129,7 +129,7 @@
 
 ### Step 13: docs-and-release
 - Goal: 사용 가이드(토큰·표면 프로파일·문항 스키마·인쇄), 컴포넌트 카탈로그, 패키지 배포 설정(changesets, ESM/CSS exports)을 문서화한다
-- Files: README.md, docs/ui-library/guide.md, docs/ui-library/components.md, docs/adr/0029-ui-library-architecture.md, .changeset/config.json
+- Files: README.md, docs/design-system/guide.md, docs/design-system/components.md, docs/adr/0029-design-system-architecture.md, .changeset/config.json
 - Acceptance: AC-1: ADR이 설계 결정 1~7과 기각한 대안(Tailwind/shadcn, 웹 컴포넌트 우선)을 기록한다 / AC-2: `pnpm -r build && pnpm -r pack --dry-run`이 성공하고 exports가 ESM + CSS를 포함한다 / AC-3: README가 새 패키지 지도를 반영한다
 - Tests: pnpm -r build && pnpm -r pack --dry-run
 - Depends on: showcase-and-visual
