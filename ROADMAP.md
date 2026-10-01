@@ -49,9 +49,9 @@
 ## Steps
 
 ### Step 1: workspace-scaffold
-- Goal: pnpm 워크스페이스, TypeScript, vitest, ESLint, Storybook 골격을 만들고 `pnpm typecheck`·`pnpm test`가 빈 패키지에서 통과한다
-- Files: package.json, pnpm-workspace.yaml, tsconfig.base.json, eslint.config.js, vitest.workspace.ts, packages/tokens/package.json, packages/core/package.json, packages/react/package.json, packages/content/package.json, packages/print/package.json, apps/showcase/package.json
-- Acceptance: AC-1: `pnpm -r typecheck`와 `pnpm -r test`가 exit 0 이다 / AC-2: 루트 `package.json`에 lint·typecheck·test 스크립트가 정의된다
+- Goal: pnpm 워크스페이스, TypeScript, vitest, ESLint 골격을 만들고(Storybook은 Step 12에서 추가) `pnpm typecheck`·`pnpm test`가 빈 패키지에서 통과한다
+- Files: package.json, pnpm-workspace.yaml, tsconfig.base.json, eslint.config.js, .gitignore, packages/tokens/package.json, packages/core/package.json, packages/react/package.json, packages/content/package.json, packages/print/package.json, apps/showcase/package.json
+- Acceptance: AC-1: `pnpm -r typecheck`와 `pnpm -r test`가 exit 0 이다 / AC-2: 루트 `package.json`에 lint·typecheck·test 스크립트가 정의되고 `pnpm lint`가 exit 0 이다
 - Tests: pnpm install && pnpm -r typecheck && pnpm -r test
 
 ### Step 2: design-tokens
