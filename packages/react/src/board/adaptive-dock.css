@@ -1,0 +1,19 @@
+@layer components {
+  .oe-dock {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translate(var(--oe-dock-x), var(--oe-dock-y));
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    box-shadow: var(--elevation-2);
+    transition: transform var(--motion-base) var(--motion-ease);
+    touch-action: none;
+  }
+  .oe-dock__tools { display: flex; align-items: center; gap: var(--space-2); }
+}

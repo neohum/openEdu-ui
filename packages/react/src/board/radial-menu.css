@@ -1,0 +1,22 @@
+@layer components {
+  .oe-radial { position: fixed; inset: 0; }
+  .oe-radial__item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(calc(var(--oe-x) - 50%), calc(var(--oe-y) - 50%));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--target-min);
+    min-height: var(--target-min);
+    border: 0;
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    box-shadow: var(--elevation-2);
+    font-size: var(--font-size-xl);
+    cursor: pointer;
+  }
+  .oe-radial__item:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+}

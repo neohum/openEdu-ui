@@ -1,0 +1,25 @@
+@layer components {
+  .oe-curtain { position: relative; overflow: hidden; }
+  .oe-curtain__shade { position: absolute; background: var(--color-fg); opacity: 0.92; }
+  .oe-curtain[data-edge="top"] .oe-curtain__shade { inset: 0 0 auto 0; height: calc((1 - var(--oe-open)) * 100%); }
+  .oe-curtain[data-edge="bottom"] .oe-curtain__shade { inset: auto 0 0 0; height: calc((1 - var(--oe-open)) * 100%); }
+  .oe-curtain[data-edge="left"] .oe-curtain__shade { inset: 0 auto 0 0; width: calc((1 - var(--oe-open)) * 100%); }
+  .oe-curtain[data-edge="right"] .oe-curtain__shade { inset: 0 0 0 auto; width: calc((1 - var(--oe-open)) * 100%); }
+
+  .oe-curtain__handle {
+    position: absolute;
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    touch-action: none;
+    cursor: grab;
+  }
+  .oe-curtain__handle:focus-visible { outline: 2px solid var(--color-accent-fg); outline-offset: 2px; }
+  .oe-curtain[data-edge="top"] .oe-curtain__handle,
+  .oe-curtain[data-edge="bottom"] .oe-curtain__handle { left: 50%; width: calc(var(--target-min) * 2); height: var(--target-min); translate: -50% 0; }
+  .oe-curtain[data-edge="left"] .oe-curtain__handle,
+  .oe-curtain[data-edge="right"] .oe-curtain__handle { top: 50%; width: var(--target-min); height: calc(var(--target-min) * 2); translate: 0 -50%; }
+  .oe-curtain[data-edge="top"] .oe-curtain__handle { top: calc((1 - var(--oe-open)) * 100%); }
+  .oe-curtain[data-edge="bottom"] .oe-curtain__handle { bottom: calc((1 - var(--oe-open)) * 100%); }
+  .oe-curtain[data-edge="left"] .oe-curtain__handle { left: calc((1 - var(--oe-open)) * 100%); }
+  .oe-curtain[data-edge="right"] .oe-curtain__handle { right: calc((1 - var(--oe-open)) * 100%); }
+}
