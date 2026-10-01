@@ -108,8 +108,8 @@ first deploy:
 | PWA/manifest icons (192/512)                 | exported from `favicon.svg`             |
 | OG/social image (1200×630)                   | logo + token palette composition        |
 
-All rasters are exported from the authored SVGs — the SVG is the source file
-and lives in the repo alongside the exports.
+All rasters and icons are generated from the authored 3D pencil asset — the assets
+live in the repo alongside the exports.
 
 ## Don'ts
 
