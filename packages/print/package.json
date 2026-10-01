@@ -8,5 +8,21 @@
     "typecheck": "tsc -p .",
     "test": "vitest run --passWithNoTests"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@openedu/content": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./print.css": "./src/print.css"
+  }
 }

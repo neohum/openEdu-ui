@@ -114,10 +114,10 @@
 - Depends on: core-input-layer, react-primitives
 
 ### Step 11: print-worksheet
-- Goal: 같은 문항 JSON을 A4 종이 학습지로 렌더한다 (학생용/교사용 정답지 모드, 페이지 분할 시 문항이 쪼개지지 않음, 흑백 인쇄 시 대비 유지)
+- Goal: 같은 문항 JSON을 A4 종이 학습지로 렌더한다(화면용 컴포넌트가 아니라 같은 스키마를 쓰는 인쇄 전용 정적 렌더러) (학생용/교사용 정답지 모드, 페이지 분할 시 문항이 쪼개지지 않음, 흑백 인쇄 시 대비 유지)
 - Files: packages/print/src/print.css, packages/print/src/PrintWorksheet.tsx, packages/print/src/index.ts, packages/print/tests/print.test.tsx, scripts/ops/print-pdf.ts
 - Acceptance: AC-1: `scripts/ops/print-pdf.ts`가 샘플 문항으로 A4 PDF를 생성하고 페이지 수가 기대값이다 / AC-2: 교사용 모드에서만 정답·해설이 PDF 텍스트에 나타난다 / AC-3: 문항 블록에 `break-inside: avoid`가 적용된다
-- Tests: pnpm --filter @openedu/print test && node scripts/ops/print-pdf.ts --sample
+- Tests: pnpm --filter @openedu/print test && pnpm print:sample
 - Depends on: worksheet-components
 
 ### Step 12: showcase-and-visual
