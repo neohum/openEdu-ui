@@ -1,0 +1,30 @@
+@page {
+  size: A4;
+  margin: 15mm;
+}
+
+@layer components {
+  .oe-print { color: var(--color-fg); background: var(--color-bg); font-size: var(--font-size-body); line-height: var(--font-leading-body); }
+  .oe-print__header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--color-fg); padding-bottom: var(--space-2); margin-bottom: var(--space-6); }
+  .oe-print__header h1 { margin: 0; font-size: var(--font-size-2xl); }
+  .oe-print__who { margin: 0; }
+  .oe-print__item { break-inside: avoid; page-break-inside: avoid; margin-bottom: var(--space-6); }
+  .oe-print__passage { break-inside: avoid; margin: 0 0 var(--space-3); padding: var(--space-3); border: 1px solid var(--color-border); border-left: 4px solid var(--color-fg); }
+  .oe-print__passage p { margin: 0; }
+  .oe-print__stem { margin: 0 0 var(--space-2); font-weight: var(--font-weight-medium); }
+  .oe-print__number { font-weight: var(--font-weight-bold); }
+  .oe-print__points { color: var(--color-fg-muted); font-weight: var(--font-weight-regular); }
+  .oe-print__options { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
+  .oe-print__options li[data-correct] { font-weight: var(--font-weight-bold); text-decoration: underline; }
+  .oe-print__bubble { display: inline-block; min-width: var(--space-5); text-align: center; border: 1px solid var(--color-fg); border-radius: var(--radius-full); }
+  .oe-print__blank { display: inline-block; min-width: var(--space-12); border-bottom: 1px solid var(--color-fg); text-align: center; }
+  .oe-print__blank--filled { font-weight: var(--font-weight-bold); }
+  .oe-print__line { margin: 0; min-height: var(--space-8); border-bottom: 1px solid var(--color-fg); }
+  .oe-print__matching { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .oe-print__matching ul, .oe-print__ordering { list-style: none; margin: 0; padding: 0; }
+  .oe-print__matching .oe-print__answer { grid-column: 1 / -1; }
+  .oe-print__box { display: inline-block; width: var(--space-5); height: var(--space-5); border: 1px solid var(--color-fg); vertical-align: middle; }
+  .oe-print__figure { margin: 0; padding: var(--space-6); border: 1px dashed var(--color-fg); text-align: center; }
+  .oe-print__answer, .oe-print__explanation { margin: var(--space-2) 0 0; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-fg); }
+  .oe-print__explanation { border-style: dashed; }
+}

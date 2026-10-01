@@ -4,17 +4,25 @@
   "type": "module",
   "packageManager": "pnpm@8.15.0",
   "scripts": {
-    "typecheck": "pnpm -r typecheck",
+    "typecheck": "pnpm -r typecheck && tsc -p .",
     "test": "pnpm -r test",
     "lint": "eslint .",
     "build": "pnpm -r build",
     "lint:tokens": "node scripts/ops/spacing-lint.ts",
-    "test:scripts": "node --test scripts/ops/spacing-lint.test.ts"
+    "test:scripts": "node --test scripts/ops/spacing-lint.test.ts",
+    "print:sample": "tsx scripts/ops/print-pdf.ts --sample"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "eslint": "^10.11.0",
+    "pdfjs-dist": "^6.3.289",
+    "playwright-core": "^1.63.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0",
     "vitest": "^5.0.3"
