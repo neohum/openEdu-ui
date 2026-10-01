@@ -102,13 +102,13 @@ first deploy:
 
 | Asset                       | Source of truth                                    |
 | --------------------------- | -------------------------------------------------- |
-| `favicon.svg` (+ `.ico`, 32/180/192/512 PNG) | logo mark: pastel 3D pencil, tip pointing down-left, transparent background |
+| `favicon.svg` (+ `.ico`, 32/180/192/512 PNG) | logo mark: 3D modular education blocks 'e' mark with stylus pencil, transparent background |
 | `logo.svg` (mark + wordmark variants)        | project identity, token palette         |
 | `apple-touch-icon.png` (180×180)             | exported from `favicon.svg`             |
 | PWA/manifest icons (192/512)                 | exported from `favicon.svg`             |
 | OG/social image (1200×630)                   | logo + token palette composition        |
 
-All rasters and icons are generated from the authored 3D pencil asset — the assets
+All rasters and icons are generated from the authored 3D modular block 'e' mark asset — the assets
 live in the repo alongside the exports.
 
 ## Don'ts
