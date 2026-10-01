@@ -22,6 +22,13 @@ describe("classifyPointer", () => {
     expect(classifyPointer(ptr("touch", 30, 30), { palmThreshold: 20 })).toBe("ignore");
   });
 
+  it("routes finger touch to ink only when touchInks is set, still rejecting palms", () => {
+    expect(classifyPointer(ptr("touch"), { touchInks: true })).toBe("ink");
+    expect(classifyPointer(ptr("touch", 80, 60), { touchInks: true })).toBe("ignore");
+    expect(classifyPointer(ptr("touch"), { touchInks: true, penActive: true })).toBe("ignore");
+    expect(classifyPointer(ptr("touch"), { touchInks: false })).toBe("ui");
+  });
+
   it("ignores touch while a pen is down", () => {
     expect(classifyPointer(ptr("touch"), { penActive: true })).toBe("ignore");
   });
@@ -56,6 +63,16 @@ describe("createPointerRouter", () => {
     fire(target, "pointerup", { pointerType: "pen", pointerId: 1 });
     fire(target, "pointerdown", { pointerType: "touch", pointerId: 3 });
     expect(onUi).toHaveBeenCalledTimes(1);
+  });
+
+  it("sends touch to onInk with touchInks", () => {
+    const target = new EventTarget();
+    const onInk = vi.fn();
+    const onUi = vi.fn();
+    createPointerRouter(target, { onInk, onUi }, { touchInks: true });
+    fire(target, "pointerdown", { pointerType: "touch" });
+    expect(onInk).toHaveBeenCalledTimes(1);
+    expect(onUi).not.toHaveBeenCalled();
   });
 
   it("stops routing after dispose", () => {
