@@ -1,0 +1,9 @@
+@layer components {
+  .oe-card {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    box-shadow: var(--elevation-1);
+  }
+}
