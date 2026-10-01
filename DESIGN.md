@@ -102,7 +102,7 @@ first deploy:
 
 | Asset                       | Source of truth                                    |
 | --------------------------- | -------------------------------------------------- |
-| `favicon.svg` (+ `.ico`, 32/180/192/512 PNG) | logo mark: colorful pencil (accent blue, yellow, green, pink) on a soft indigo tile |
+| `favicon.svg` (+ `.ico`, 32/180/192/512 PNG) | logo mark: pastel 3D pencil, tip pointing down-left, transparent background |
 | `logo.svg` (mark + wordmark variants)        | project identity, token palette         |
 | `apple-touch-icon.png` (180×180)             | exported from `favicon.svg`             |
 | PWA/manifest icons (192/512)                 | exported from `favicon.svg`             |
