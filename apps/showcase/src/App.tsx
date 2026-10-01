@@ -94,7 +94,7 @@ export function App() {
               <Stack>
                 <Cluster>
                   <Tooltip label="새 문제 추가"><IconButton icon="plus" label="추가" variant="secondary" /></Tooltip>
-                  <IconButton icon="pencil" label="수정" variant="secondary" />
+                  <IconButton icon="pencil-simple" label="수정" variant="secondary" />
                   <IconButton icon="trash" label="삭제" variant="danger" />
                 </Cluster>
                 <Button variant="ghost" onClick={() => setDialogOpen(true)}><Icon name="info" /> 대화상자 열기</Button>
@@ -127,7 +127,7 @@ export function App() {
         <Section title="전자칠판">
           <Stack>
             <Cluster>
-              <Button variant="secondary" onClick={(e) => setMenu({ x: e.clientX, y: e.clientY })}><Icon name="pencil" /> 방사형 메뉴 열기</Button>
+              <Button variant="secondary" onClick={(e) => setMenu({ x: e.clientX, y: e.clientY })}><Icon name="pencil-simple" /> 방사형 메뉴 열기</Button>
             </Cluster>
             <Card>
               <FocusCurtain label="정답 가림막" defaultValue={0.4}>
@@ -142,7 +142,7 @@ export function App() {
             open={menu !== null}
             origin={menu ?? { x: 0, y: 0 }}
             label="도구"
-            items={[{ id: "pen", label: "펜", icon: "pencil" }, { id: "erase", label: "지우개", icon: "eraser" }, { id: "undo", label: "되돌리기", icon: "undo" }]}
+            items={[{ id: "pen", label: "펜", icon: "pencil-simple" }, { id: "erase", label: "지우개", icon: "eraser" }, { id: "undo", label: "되돌리기", icon: "arrow-u-up-left" }]}
             onSelect={() => {}}
             onClose={() => setMenu(null)}
           />
@@ -150,12 +150,12 @@ export function App() {
       </main>
 
       <footer className="sc-footer">
-        <p>아이콘: Flaticon UIcons Regular Rounded (© Freepik Company, flaticon.com) · 쇼케이스 화면에서만 사용합니다.</p>
+        <p>아이콘: Phosphor Icons (MIT).</p>
       </footer>
       <AdaptiveDock label="칠판 도구">
-        <IconButton icon="pencil" label="펜" variant="secondary" />
+        <IconButton icon="pencil-simple" label="펜" variant="secondary" />
         <IconButton icon="eraser" label="지우개" variant="secondary" />
-        <IconButton icon="undo" label="되돌리기" variant="secondary" />
+        <IconButton icon="arrow-u-up-left" label="되돌리기" variant="secondary" />
       </AdaptiveDock>
     </div>
   );

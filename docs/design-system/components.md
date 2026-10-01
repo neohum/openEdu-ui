@@ -1,13 +1,13 @@
 # 컴포넌트 카탈로그
 
-모든 컴포넌트는 `@openedu/react`에서 import합니다. 터치 타겟은 `--target-min` 이상이고, 아이콘은 `fi fi-rr-*`입니다.
+모든 컴포넌트는 `@openedu/react`에서 import합니다. 터치 타겟은 `--target-min` 이상이고, 아이콘은 Phosphor Icons(`ph ph-*`)입니다.
 
 ## 기본
 
 | 컴포넌트 | 설명 |
 | --- | --- |
 | `Button` | `variant` primary/secondary/ghost/danger, `size` sm/md, `loading`(너비 유지) |
-| `IconButton` | `icon`(UIcons 이름)과 `label`(접근 가능한 이름) 필수 |
+| `IconButton` | `icon`(Phosphor 이름, 예: `x`, `trash`)과 `label`(접근 가능한 이름) 필수 |
 | `Input` | `label` 필수(없으면 오류), `hint`, `error`가 `aria-describedby`로 연결 |
 | `Card`, `Stack`, `Cluster`, `Grid` | 표면 위 그룹과 간격 토큰 기반 레이아웃 |
 | `Dialog`, `Tooltip` | Radix 기반 접근성 동작 |

@@ -82,9 +82,9 @@ describe("FocusCurtain", () => {
 
 describe("RadialMenu", () => {
   const items = [
-    { id: "pen", label: "펜", icon: "pencil" },
+    { id: "pen", label: "펜", icon: "pencil-simple" },
     { id: "erase", label: "지우개", icon: "eraser" },
-    { id: "undo", label: "되돌리기", icon: "undo" },
+    { id: "undo", label: "되돌리기", icon: "arrow-u-up-left" },
   ];
 
   it("keeps every item inside the viewport even when opened in a corner", () => {

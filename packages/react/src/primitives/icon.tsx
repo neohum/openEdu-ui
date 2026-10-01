@@ -1,4 +1,4 @@
-/** Flaticon UIcons Regular Rounded glyph. The consumer loads the `fi` icon font CSS. */
+/** Phosphor Icons (MIT) regular glyph. The consumer loads `@phosphor-icons/web/regular`. */
 export function Icon({ name }: { name: string }) {
-  return <i className={`fi fi-rr-${name}`} aria-hidden="true" />;
+  return <i className={`ph ph-${name}`} aria-hidden="true" />;
 }

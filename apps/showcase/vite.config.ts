@@ -11,7 +11,7 @@ function preloadCriticalAssets(): Plugin {
         const files = Object.keys(ctx.bundle ?? {});
         const tags: { tag: string; attrs: Record<string, string | boolean>; injectTo: "head-prepend" }[] = [];
         const css = files.find((f) => f.endsWith(".css") && f.startsWith("assets/index"));
-        const font = files.find((f) => /uicons-regular-rounded.*\.woff2$/.test(f));
+        const font = files.find((f) => /Phosphor.*\.woff2$/.test(f));
         if (css) tags.push({ tag: "link", attrs: { rel: "preload", as: "style", href: `/${css}` }, injectTo: "head-prepend" });
         if (font) tags.push({ tag: "link", attrs: { rel: "preload", as: "font", type: "font/woff2", href: `/${font}`, crossorigin: "" }, injectTo: "head-prepend" });
         return tags;

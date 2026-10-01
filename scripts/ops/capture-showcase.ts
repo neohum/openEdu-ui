@@ -54,7 +54,7 @@ try {
       return {
         surfaceAttr: document.documentElement.dataset.surface,
         bodyFontPx: parseFloat(getComputedStyle(document.body).fontSize),
-        iconFontLoaded: document.fonts.check("16px uicons-regular-rounded"),
+        iconFontLoaded: document.fonts.check("16px Phosphor"),
         logoLoaded: !!logo && logo.naturalWidth > 0,
         faviconLink: !!document.querySelector('link[rel="icon"]'),
         preloadFont: !!document.querySelector('link[rel="preload"][as="font"]'),
