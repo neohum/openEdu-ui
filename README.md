@@ -17,3 +17,7 @@
 ## 기술 방향
 
 React 19 + TypeScript + 순수 CSS, pnpm 워크스페이스(`@openedu/*`). 토큰은 CSS 변수로 빌드되어 프레임워크와 무관하게 쓸 수 있습니다.
+
+## 라이선스
+
+[MIT](./LICENSE)

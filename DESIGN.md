@@ -35,7 +35,7 @@ WCAG AA (4.5:1) on their backgrounds in both themes. Dark mode follows
 ### Button
 - variants: `primary | secondary | ghost | danger`
 - sizes: `sm | md` (md is default)
-- always reachable by keyboard; visible focus ring `2px solid color.accent`
+- always reachable by keyboard; visible focus ring `2px solid var(--color-accent)`
 - loading state replaces children with spinner — width stays stable
 
 ### Input
