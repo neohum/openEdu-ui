@@ -7,7 +7,9 @@
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "lint": "eslint .",
-    "build": "pnpm -r build"
+    "build": "pnpm -r build",
+    "lint:tokens": "node scripts/ops/spacing-lint.ts",
+    "test:scripts": "node --test scripts/ops/spacing-lint.test.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
