@@ -50,7 +50,7 @@ function walk(dir: string, acc: string[] = []): string[] {
 export function collectFiles(root: string): string[] {
   const files: string[] = [];
   for (const group of ["packages", "apps"]) {
-    let pkgs: string[] = [];
+    let pkgs: string[];
     try {
       pkgs = readdirSync(join(root, group));
     } catch {
