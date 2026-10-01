@@ -1,0 +1,36 @@
+@layer components {
+  .oe-blocks, .oe-fraction { display: flex; flex-direction: column; gap: var(--space-4); }
+  .oe-blocks__places { display: flex; gap: var(--space-6); }
+  .oe-blocks__place { display: flex; flex-direction: column; gap: var(--space-2); align-items: center; }
+  .oe-blocks__stack { display: flex; flex-wrap: wrap; gap: var(--space-1); min-height: var(--space-12); max-width: var(--space-12); align-content: flex-end; }
+  .oe-blocks__controls, .oe-fraction__controls { display: flex; gap: var(--space-2); }
+  .oe-block { display: block; border-radius: var(--radius-sm); background: var(--color-accent); }
+  .oe-block[data-unit="1"] { width: var(--space-3); height: var(--space-3); }
+  .oe-block[data-unit="10"] { width: var(--space-3); height: var(--space-12); }
+  .oe-block[data-unit="100"] { width: var(--space-12); height: var(--space-12); }
+
+  .oe-fraction__bar { display: flex; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); }
+  .oe-fraction__part { flex: 1; min-height: var(--target-min); border: 0; border-right: 1px solid var(--color-border); background: var(--color-surface); cursor: pointer; }
+  .oe-fraction__part:last-child { border-right: 0; }
+  .oe-fraction__part[aria-pressed="true"] { background: var(--color-accent); }
+  .oe-fraction__part:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+  .oe-fraction__readout { font-size: var(--font-size-2xl); font-variant-numeric: tabular-nums; }
+
+  .oe-numberline { position: relative; height: calc(var(--target-min) * 2); touch-action: none; }
+  .oe-numberline__axis { position: absolute; inset: auto 0 0 0; height: var(--space-8); border-top: 2px solid var(--color-fg); }
+  .oe-numberline__tick { position: absolute; left: var(--oe-tick); transform: translateX(-50%); padding-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-fg-muted); }
+  .oe-numberline__counter {
+    position: absolute;
+    left: var(--oe-pos);
+    top: 0;
+    width: var(--target-min);
+    height: var(--target-min);
+    translate: -50% 0;
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    cursor: grab;
+    transition: left var(--motion-fast) var(--motion-ease);
+  }
+  .oe-numberline__counter[data-dragging] { transition: none; cursor: grabbing; }
+  .oe-numberline__counter:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+}
