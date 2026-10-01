@@ -11,6 +11,8 @@ export type RouteOptions = {
   palmThreshold?: number;
   /** Let a mouse draw instead of operating the UI (useful for desktop whiteboards). */
   mouseInks?: boolean;
+  /** Let a finger draw (after palm rejection) instead of operating the UI. Default false. */
+  touchInks?: boolean;
   /** A pen is currently touching the surface, so any touch is a resting hand. */
   penActive?: boolean;
 };
@@ -22,7 +24,8 @@ export function classifyPointer(p: PointerLike, opts: RouteOptions = {}): Pointe
   if (p.pointerType === "pen") return "ink";
   if (p.pointerType === "touch") {
     if (opts.penActive) return "ignore";
-    return Math.max(p.width, p.height) > palm ? "ignore" : "ui";
+    if (Math.max(p.width, p.height) > palm) return "ignore";
+    return opts.touchInks ? "ink" : "ui";
   }
   return opts.mouseInks ? "ink" : "ui";
 }
