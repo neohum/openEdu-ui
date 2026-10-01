@@ -11,17 +11,19 @@ const chrome = [process.env.CHROME_PATH, "/Applications/Google Chrome.app/Conten
 if (!chrome) throw new Error("Chrome not found. Set CHROME_PATH.");
 
 const browser = await chromium.launch({ executablePath: chrome });
-async function png(size: number): Promise<Buffer> {
+async function png(size: number, bg?: string): Promise<Buffer> {
   const page = await browser.newPage({ viewport: { width: size, height: size } });
-  await page.setContent(`<body style="margin:0;background:transparent">${svg.replace("<svg ", `<svg width="${size}" height="${size}" `)}</body>`);
-  const buf = await page.screenshot({ omitBackground: true, clip: { x: 0, y: 0, width: size, height: size } });
+  const bgStyle = bg ? `background:${bg}` : `background:transparent`;
+  await page.setContent(`<body style="margin:0;display:flex;align-items:center;justify-content:center;height:100vh;${bgStyle}">${svg.replace("<svg ", `<svg width="${size}" height="${size}" `)}</body>`);
+  const buf = await page.screenshot({ omitBackground: !bg, clip: { x: 0, y: 0, width: size, height: size } });
   await page.close();
   return buf;
 }
 
 try {
-  const sizes: [string, number][] = [["app-icon.png", 512], ["icon-192.png", 192], ["apple-touch-icon.png", 180]];
-  for (const [name, size] of sizes) writeFileSync(join(pub, name), await png(size));
+  writeFileSync(join(pub, "app-icon.png"), await png(512));
+  writeFileSync(join(pub, "icon-192.png"), await png(192));
+  writeFileSync(join(pub, "apple-touch-icon.png"), await png(180, "#f8fafc"));
   // ICO container holding one 32x32 PNG image.
   const img = await png(32);
   const header = Buffer.alloc(22);
