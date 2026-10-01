@@ -53,7 +53,10 @@ export function App() {
   return (
     <div className="sc-page">
       <header className="sc-header">
-        <img src="/logo.svg" alt="openEdu-ui" className="sc-logo" />
+        <a className="sc-brand" href="/" aria-label="openEdu-ui">
+          <img src="/favicon.svg" alt="" className="sc-logo" />
+          <span className="sc-wordmark">open<span className="sc-wordmark__edu">Edu</span>-ui</span>
+        </a>
         <Cluster gap={2} role="group" aria-label="표면 선택">
           {SURFACES.map((s) => (
             <Button key={s} size="sm" variant={s === surface ? "primary" : "secondary"} aria-pressed={s === surface} onClick={() => setSurface(s)}>
