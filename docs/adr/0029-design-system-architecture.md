@@ -12,7 +12,7 @@
 1. **토큰이 진실의 원천이다.** DTCG JSON → CSS 변수. React가 아닌 환경(정적 HTML, 인쇄 CSS)도 같은 값을 쓴다.
 2. **표면 프로파일은 토큰 오버라이드 레이어다.** `data-surface` 하나로 간격 단위, 글자 배율, 터치 타겟이 바뀌고 컴포넌트는 표면을 모른다.
 3. **1차 구현은 React 19 + TypeScript + 순수 CSS(`@layer`).** 접근성 동작은 Radix 헤드리스 프리미티브를 쓴다.
-4. **아이콘은 Flaticon UIcons Regular Rounded(`fi fi-rr-*`) 단일 표준.** 글꼴은 저장소에 포함하지 않는다(라이선스).
+4. **아이콘은 Phosphor Icons(MIT) Regular(`ph ph-*`) 단일 표준.** 처음에는 Flaticon UIcons를 썼으나 출처 표기 의무가 있는 라이선스라 오픈소스(MIT) 저장소와 맞지 않아 교체했다. 글꼴은 소비자가 `@phosphor-icons/web`으로 직접 불러온다.
 5. **종이 학습지는 같은 문항 스키마를 쓰는 인쇄 전용 정적 렌더러다.** 화면용 컴포넌트를 재사용하지 않는다(인쇄에는 입력 위젯이 없다).
 6. **판서 엔진은 어댑터다.** 코어는 `InkLayer` 인터페이스만 정의하고 tldraw/Konva에 의존하지 않는다.
 7. **문항은 QTI 3.0 부분집합(choice, cloze, matching, ordering, hotspot, short-answer)을 zod로 정의한다.**

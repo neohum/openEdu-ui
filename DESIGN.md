@@ -86,7 +86,7 @@ empty-state illustrations, OG/social images, placeholder imagery — is
 **generated for this project** in its design language, never left as a
 framework default or pulled from a generic pack.
 
-- **Icons:** Flaticon UIcons Regular Rounded (`fi fi-rr-*`) is the single icon
+- **Icons:** Phosphor Icons (MIT) Regular (`ph ph-*`) is the single icon
   family; `currentColor` so tokens drive the color. Never mix icon sets or use
   ad-hoc inline SVG icons.
 - **Favicon / logo:** derived from the openEdu-ui identity and

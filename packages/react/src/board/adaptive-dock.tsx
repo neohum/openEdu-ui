@@ -62,10 +62,10 @@ export function AdaptiveDock({
 
   return (
     <div role="toolbar" aria-label={label} className="oe-dock" data-side={side} data-preset={preset} style={style}>
-      <IconButton icon="arrows" label={labels.move} onPointerUp={onHandleUp} onKeyDown={onHandleKey} />
+      <IconButton icon="arrows-out-cardinal" label={labels.move} onPointerUp={onHandleUp} onKeyDown={onHandleKey} />
       <div className="oe-dock__tools">{children}</div>
       <IconButton
-        icon={preset === "adult" ? "arrow-small-down" : "arrow-small-up"}
+        icon={preset === "adult" ? "arrow-down" : "arrow-up"}
         label={preset === "adult" ? labels.child : labels.adult}
         onClick={() => changePreset(preset === "adult" ? "child" : "adult")}
       />

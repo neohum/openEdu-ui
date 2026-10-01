@@ -121,8 +121,8 @@ export function OrderingItem({ item, value, defaultValue, onChange, readOnly, nu
         {order.map((id, i) => (
           <li key={id} className="oe-ordering__row">
             <span>{byId.get(id)}</span>
-            <Button variant="ghost" size="sm" disabled={readOnly || i === 0} aria-label={`${byId.get(id)} 위로`} onClick={() => move(i, -1)}><Icon name="arrow-small-up" /></Button>
-            <Button variant="ghost" size="sm" disabled={readOnly || i === order.length - 1} aria-label={`${byId.get(id)} 아래로`} onClick={() => move(i, 1)}><Icon name="arrow-small-down" /></Button>
+            <Button variant="ghost" size="sm" disabled={readOnly || i === 0} aria-label={`${byId.get(id)} 위로`} onClick={() => move(i, -1)}><Icon name="arrow-up" /></Button>
+            <Button variant="ghost" size="sm" disabled={readOnly || i === order.length - 1} aria-label={`${byId.get(id)} 아래로`} onClick={() => move(i, 1)}><Icon name="arrow-down" /></Button>
           </li>
         ))}
       </ol>

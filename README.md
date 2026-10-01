@@ -49,7 +49,7 @@ pnpm print:sample                 # 샘플 학습지를 A4 PDF로 생성 (out/pr
 
 ## 아이콘
 
-컴포넌트는 [Flaticon UIcons](https://www.flaticon.com/uicons) Regular Rounded(`fi fi-rr-*`) 클래스를 사용합니다. 아이콘 글꼴은 이 저장소에 포함하지 않으며, 사용하는 쪽에서 `@flaticon/flaticon-uicons`를 설치해 Flaticon 라이선스(출처 표기 등)에 따라 사용해야 합니다. 이 저장소의 MIT 라이선스는 아이콘 글꼴에 적용되지 않습니다.
+컴포넌트는 [Phosphor Icons](https://phosphoricons.com)(MIT) Regular 글꼴의 `ph ph-*` 클래스를 사용합니다. 사용하는 쪽에서 `@phosphor-icons/web`을 설치하고 `@phosphor-icons/web/regular` CSS를 불러오면 됩니다. 출처 표기 의무가 없는 MIT 라이선스입니다.
 
 ## 라이선스
 

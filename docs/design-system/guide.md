@@ -5,7 +5,7 @@
 ```tsx
 import "@openedu/tokens/tokens.css";
 import "@openedu/tokens/surfaces.css";
-import "@flaticon/flaticon-uicons/css/regular/rounded.css"; // 아이콘: 직접 설치, Flaticon 라이선스 적용
+import "@phosphor-icons/web/regular"; // 아이콘: 직접 설치(MIT)
 import "@openedu/react/styles.css";
 ```
 

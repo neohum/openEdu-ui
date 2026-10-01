@@ -47,10 +47,10 @@ describe("Button", () => {
 });
 
 describe("IconButton", () => {
-  it("uses a fi-rr icon and the label as its accessible name", () => {
-    render(<IconButton icon="cross" label="닫기" />);
+  it("uses a Phosphor icon and the label as its accessible name", () => {
+    render(<IconButton icon="x" label="닫기" />);
     const btn = screen.getByRole("button", { name: "닫기" });
-    expect(btn.querySelector("i.fi.fi-rr-cross")).not.toBeNull();
+    expect(btn.querySelector("i.ph.ph-x")).not.toBeNull();
     expect(btn.querySelector("svg")).toBeNull();
   });
 });

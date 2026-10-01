@@ -21,7 +21,7 @@ export function Dialog({ open, onOpenChange, title, description, closeLabel = "ë
           <header className="oe-dialog__header">
             <RadixDialog.Title className="oe-dialog__title">{title}</RadixDialog.Title>
             <RadixDialog.Close asChild>
-              <IconButton icon="cross" label={closeLabel} />
+              <IconButton icon="x" label={closeLabel} />
             </RadixDialog.Close>
           </header>
           {description ? (

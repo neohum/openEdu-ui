@@ -20,7 +20,7 @@
 1. **토큰이 진실의 원천이다.** 토큰은 JSON(DTCG 형식)으로 정의 → CSS 변수로 빌드. 따라서 React가 아닌 정적 HTML·Vue·종이(인쇄 CSS)도 같은 값을 쓴다.
 2. **표면 프로파일 = 토큰 오버라이드 레이어.** `data-surface="board|desktop|mobile|print"` 하나로 스케일(글자·간격·타겟)이 바뀐다. 컴포넌트는 프로파일을 모른다.
 3. **1차 구현은 React 19 + TypeScript + CSS(vanilla, `@layer`).** Tailwind/shadcn은 쓰지 않는다: 소비자가 CSS 변수만으로 쓸 수 있어야 하고 `DESIGN.md` 계약과 충돌 없이 가기 위해서다. 헤드리스 접근성은 Radix Primitives를 의존성으로 사용(직접 구현 금지).
-4. **아이콘은 `fi fi-rr-*`(Flaticon UIcons Regular Rounded) 단일 표준.** 연구 문서 예시의 Lucide/인라인 SVG는 프로젝트 규칙상 사용하지 않는다.
+4. **아이콘은 Phosphor Icons(MIT) Regular(`ph ph-*`) 단일 표준.** 라이선스 부담 없이 글꼴로 쓸 수 있고, 인라인 SVG·아이콘 혼용은 하지 않는다.
 5. **종이 학습지는 별도 기술이 아니라 `print` 프로파일 + 같은 컴포넌트.** `@media print` + CSS Paged Media(`@page`)로 A4 출력, 정답지/학생용 모드 분리.
 6. **판서 엔진은 어댑터로만 연결한다.** tldraw/Konva를 코어 의존성으로 넣지 않고 `core`의 `InkLayer` 인터페이스 + 선택 패키지로 분리(번들 크기와 라이선스 격리).
 7. **디자인 시스템 계약은 `DESIGN.md`를 갱신하는 것으로 한다.** 현재 `DESIGN.md`의 다크 단일 테마·`space.unit 4px`는 `desktop` 프로파일의 기본값으로 흡수한다.
@@ -80,7 +80,7 @@
 - Tests: pnpm --filter @openedu/core test
 
 ### Step 6: react-primitives
-- Goal: Button, IconButton, Input, Card, Stack/Cluster/Grid, Dialog, Tooltip을 `DESIGN.md` 계약대로 구현한다 (Radix 헤드리스, `fi fi-rr-*` 아이콘, 포커스 링, 로딩 시 너비 유지)
+- Goal: Button, IconButton, Input, Card, Stack/Cluster/Grid, Dialog, Tooltip을 `DESIGN.md` 계약대로 구현한다 (Radix 헤드리스, `ph ph-*` 아이콘, 포커스 링, 로딩 시 너비 유지)
 - Files: packages/react/src/primitives/*.tsx, packages/react/src/primitives/*.css, packages/react/src/index.ts, packages/react/tests/primitives.test.tsx
 - Acceptance: AC-1: Button variants(primary/secondary/ghost/danger)·sizes가 렌더되고 키보드 포커스 링이 보인다 / AC-2: Input은 label 없이 렌더되면 테스트가 실패한다 / AC-3: axe 접근성 검사 위반 0
 - Tests: pnpm --filter @openedu/react test -- primitives
@@ -135,7 +135,7 @@
 - Depends on: showcase-and-visual
 
 ## Verification
-- **1단계 정적:** `pnpm -r typecheck`, ESLint, `pnpm lint:tokens`(토큰 밖 값 차단), 아이콘은 `fi fi-rr-*`만 허용(Lucide/인라인 SVG grep 검사)
+- **1단계 정적:** `pnpm -r typecheck`, ESLint, `pnpm lint:tokens`(토큰 밖 값 차단), 아이콘은 `ph ph-*`만 허용(다른 아이콘 세트/인라인 SVG grep 검사)
 - **2단계 테스트:** vitest 단위·컴포넌트 테스트, axe 접근성, 스키마 계약 테스트, 프로파일 하한(타겟·폰트) 수치 테스트
 - **3단계 실행/시각:** production 빌드 → localhost preview → 4개 표면 스크린샷, 인쇄 PDF 실제 생성. headless만 가능한 환경은 수동 시각 검토 대기로 남김
 - 실제 전자칠판 하드웨어(멀티터치·펜) 검증은 이 로드맵의 범위 밖이며 **미검증**으로 명시한다 (에뮬레이션된 Pointer Events 테스트까지만)

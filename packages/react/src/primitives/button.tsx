@@ -30,7 +30,7 @@ export function Button({ variant = "primary", size = "md", loading = false, disa
 }
 
 export type IconButtonProps = Omit<ButtonProps, "children" | "aria-label"> & {
-  /** UIcons glyph name without the `fi-rr-` prefix, e.g. "cross". */
+  /** Phosphor glyph name without the `ph-` prefix, e.g. "x". */
   icon: string;
   /** Required: icon-only buttons need an accessible name. */
   label: string;
