@@ -30,6 +30,19 @@ Rules enforced by tests: no pure black, and fg / fg-muted / accent text meet
 WCAG AA (4.5:1) on their backgrounds in both themes. Dark mode follows
 `prefers-color-scheme` and can be forced with `data-theme="light|dark"`.
 
+## Surfaces
+
+Set `data-surface="board|desktop|mobile|print"` on `<html>` (CSS:
+`@openedu/tokens/surfaces.css`). A surface only overrides scale variables —
+components never branch on it.
+
+| Surface   | `--space-unit` | `--font-scale` (body) | `--target-min` | Notes |
+| --------- | -------------- | --------------------- | -------------- | ----- |
+| `desktop` | 4px            | 1 (16px)              | 44px           | default |
+| `mobile`  | 4px            | 1 (16px)              | 48px           | |
+| `board`   | 8px            | 2.4 (≈28.8pt)         | 64px (80px comfortable) | provisional values: classroom distance legibility, not yet verified against literature |
+| `print`   | 4px            | 0.9 (≈10.8pt)         | n/a            | forces light, high-contrast colors, no shadows |
+
 ## Components — contract
 
 ### Button
