@@ -4,7 +4,7 @@
 
 하나의 **디자인 토큰**과 하나의 **문항 스키마**를 기준으로, 표면(`board` / `desktop` / `mobile` / `print`)만 고르면 글자 크기·간격·터치 타겟이 자동으로 맞춰집니다.
 
-> 상태: 설계 단계입니다. 구현 계획은 [ROADMAP.md](./ROADMAP.md), 디자인 규칙은 [DESIGN.md](./DESIGN.md)를 참고하세요.
+> 상태: 초기 구현(0.0.0)입니다. 구현 계획은 [ROADMAP.md](./ROADMAP.md), 디자인 규칙은 [DESIGN.md](./DESIGN.md)를 참고하세요.
 
 ## 목표
 
@@ -17,6 +17,20 @@
 ## 기술 방향
 
 React 19 + TypeScript + 순수 CSS, pnpm 워크스페이스(`@openedu/*`). 토큰은 CSS 변수로 빌드되어 프레임워크와 무관하게 쓸 수 있습니다.
+
+## 패키지
+
+| 패키지 | 내용 |
+| --- | --- |
+| `@openedu/tokens` | 디자인 토큰(DTCG) → CSS 변수, 표면 프로파일 |
+| `@openedu/core` | 펜/터치/손바닥 입력 라우터, 도달성 유틸, `InkLayer` 인터페이스 |
+| `@openedu/react` | 기본·전자칠판·문제지·가상 교구 컴포넌트 |
+| `@openedu/content` | 문항 스키마(QTI 부분집합, zod)와 샘플 |
+| `@openedu/print` | A4 인쇄 학습지(학생용/교사용) |
+
+문서: [사용 가이드](docs/design-system/guide.md) · [컴포넌트 카탈로그](docs/design-system/components.md) · [설계 결정(ADR)](docs/adr/0029-design-system-architecture.md) · [로드맵](ROADMAP.md)
+
+패키지는 아직 npm에 배포하지 않았습니다(`private`). `pnpm pack:check`로 배포 tarball을 확인할 수 있습니다.
 
 ## 쇼케이스
 

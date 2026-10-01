@@ -11,9 +11,11 @@
     "lint:tokens": "node scripts/ops/spacing-lint.ts",
     "test:scripts": "node --test scripts/ops/spacing-lint.test.ts",
     "print:sample": "tsx scripts/ops/print-pdf.ts --sample",
-    "capture": "pnpm --filter showcase build && tsx scripts/ops/capture-showcase.ts"
+    "capture": "pnpm --filter showcase build && tsx scripts/ops/capture-showcase.ts",
+    "pack:check": "pnpm -r --filter './packages/*' exec pnpm pack --pack-destination ../../out/pack"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.3",
     "@types/react": "^19.3.0",
@@ -23,6 +25,7 @@
     "playwright-core": "^1.63.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
+    "tsup": "^8.5.1",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0",
