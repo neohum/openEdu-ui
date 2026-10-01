@@ -1,0 +1,67 @@
+@layer components {
+  .oe-ink {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-fg);
+  }
+  .oe-ink__group { display: flex; align-items: center; gap: var(--space-1); }
+
+  .oe-ink__swatch,
+  .oe-ink__size {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--target-min);
+    min-width: var(--target-min);
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--color-fg);
+    cursor: pointer;
+  }
+  .oe-ink__swatch:focus-visible,
+  .oe-ink__size:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .oe-ink__swatch[aria-checked="true"],
+  .oe-ink__size[aria-checked="true"] { border-color: var(--color-accent); background: var(--color-surface-sunken); }
+
+  .oe-ink__swatch::before {
+    content: "";
+    width: var(--space-6);
+    height: var(--space-6);
+    border-radius: var(--radius-full);
+    background: var(--oe-ink-swatch);
+    border: 1px solid var(--color-border);
+  }
+  .oe-ink__swatch[data-ink="1"] { --oe-ink-swatch: var(--ink-1); }
+  .oe-ink__swatch[data-ink="2"] { --oe-ink-swatch: var(--ink-2); }
+  .oe-ink__swatch[data-ink="3"] { --oe-ink-swatch: var(--ink-3); }
+  .oe-ink__swatch[data-ink="4"] { --oe-ink-swatch: var(--ink-4); }
+  .oe-ink__swatch[data-ink="5"] { --oe-ink-swatch: var(--ink-5); }
+  .oe-ink__swatch[data-ink="6"] { --oe-ink-swatch: var(--ink-6); }
+
+  /* --oe-ink-dot is the pen size in px, set from props at runtime */
+  .oe-ink__dot {
+    width: var(--oe-ink-dot);
+    height: var(--oe-ink-dot);
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--radius-full);
+    background: currentColor;
+  }
+
+  .oe-ink__tool[aria-pressed="true"] { border-color: var(--color-accent); }
+  .oe-ink__clear { min-height: var(--target-min); min-width: var(--target-min); }
+
+  .oe-ink__live {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
