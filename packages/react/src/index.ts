@@ -8,3 +8,4 @@ export * from "./primitives/dialog.tsx";
 export * from "./primitives/tooltip.tsx";
 export { Icon } from "./primitives/icon.tsx";
 export * from "./board/index.ts";
+export * from "./worksheet/index.ts";
