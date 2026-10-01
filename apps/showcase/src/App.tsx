@@ -2,7 +2,7 @@ import { paper } from "@openedu/content";
 import samplePaper from "../../../packages/content/src/samples/paper.json";
 import {
   AdaptiveDock, AnnotatableText, BaseTenBlocks, Button, Card, Cluster, Dialog, ExamNavigator, FocusCurtain, FractionBar,
-  Grid, Icon, IconButton, Input, ItemRenderer, NumberLine, RadialMenu, SplitBoard, Stack, TestPaperLayout, Tooltip,
+  Grid, Icon, IconButton, InkBoard, Input, ItemRenderer, NumberLine, RadialMenu, SplitBoard, Stack, TestPaperLayout, Tooltip,
   type Answers,
 } from "@openedu/react";
 import { useEffect, useState } from "react";
@@ -132,6 +132,11 @@ export function App() {
             <Cluster>
               <Button variant="secondary" onClick={(e) => setMenu({ x: e.clientX, y: e.clientY })}><Icon name="pencil-simple" /> 방사형 메뉴 열기</Button>
             </Cluster>
+            <Card>
+              <div style={{ height: "24rem" }}>
+                <InkBoard label="수업 판서 영역" finger toolbarPlacement="bottom" />
+              </div>
+            </Card>
             <Card>
               <FocusCurtain label="정답 가림막" defaultValue={0.4}>
                 <p className="sc-curtain-content">정답: 직접 문장을 따라 쓰며 구조를 익히는 것이 중요하다.</p>

@@ -20,6 +20,9 @@
 | `FocusCurtain` | 4방향 가림막. 드래그, 방향키, Home/End |
 | `RadialMenu` | 터치 지점 주변 방사형 메뉴, 화면 밖으로 나가지 않음 |
 | `SplitBoard` | 2~4개 독립 영역, 영역별 포인터 라우팅과 푸터 |
+| `InkToolbar` | 판서 도구 막대(펜·형광펜·지우개, 6색 팔레트, 굵기, undo/redo, 2단계 clear) |
+| `InkCanvas` | `@openedu/ink` 엔진과 포인터 라우터를 연결하는 캔버스 호스트 영역 |
+| `InkBoard` | `InkCanvas`와 `InkToolbar`가 결합된 올인원 전자칠판 판서 보드 컴포넌트 |
 
 ## 문제지
 
