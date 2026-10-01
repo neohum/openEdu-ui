@@ -93,7 +93,7 @@
 - Tests: pnpm --filter @openedu/content test
 
 ### Step 8: board-components
-- Goal: 전자칠판 전용 컴포넌트 4종 — AdaptiveDock(좌/우 스냅·성인/어린이 높이), FocusCurtain(가림막/스포트라이트), RadialMenu(터치 지점 방사형), SplitBoard(2~4분할)
+- Goal: 전자칠판 전용 컴포넌트 4종 — AdaptiveDock(좌/우 스냅·성인/어린이 높이), FocusCurtain(4방향 가림막, 스포트라이트 모드는 후속), RadialMenu(터치 지점 방사형), SplitBoard(2~4분할)
 - Files: packages/react/src/board/*.tsx, packages/react/src/board/*.css, packages/react/src/board/index.ts, packages/react/tests/board.test.tsx
 - Acceptance: AC-1: AdaptiveDock이 높이 프리셋 전환 시 하단 1/3 영역 안에 머문다 / AC-2: FocusCurtain이 드래그로 열림 비율을 바꾸고 키보드(방향키)로도 조작된다 / AC-3: SplitBoard 분할 수 2~4에서 영역별 독립 포인터 입력을 받는다 / AC-4: `data-surface="board"`에서 모든 터치 타겟 ≥ 64px
 - Tests: pnpm --filter @openedu/react test -- board

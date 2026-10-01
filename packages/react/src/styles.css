@@ -5,3 +5,7 @@
 @import "./primitives/layout.css";
 @import "./primitives/dialog.css";
 @import "./primitives/tooltip.css";
+@import "./board/adaptive-dock.css";
+@import "./board/focus-curtain.css";
+@import "./board/radial-menu.css";
+@import "./board/split-board.css";

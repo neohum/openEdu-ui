@@ -1,0 +1,16 @@
+@layer components {
+  .oe-split { display: grid; gap: var(--space-3); height: 100%; }
+  .oe-split[data-zones="2"] { grid-template-columns: repeat(2, 1fr); }
+  .oe-split[data-zones="3"] { grid-template-columns: repeat(3, 1fr); }
+  .oe-split[data-zones="4"] { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
+  .oe-zone {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    touch-action: none;
+  }
+  .oe-zone__body { flex: 1; min-height: 0; padding: var(--space-3); }
+  .oe-zone__footer { padding: var(--space-3); background: var(--color-surface-sunken); border-radius: 0 0 var(--radius-md) var(--radius-md); }
+}
