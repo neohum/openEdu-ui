@@ -8,5 +8,8 @@
     "typecheck": "tsc -p .",
     "test": "vitest run --passWithNoTests"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^4.6.5"
+  }
 }
