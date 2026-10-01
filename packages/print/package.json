@@ -6,7 +6,8 @@
   "main": "./src/index.ts",
   "scripts": {
     "typecheck": "tsc -p .",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run --passWithNoTests",
+    "build": "tsup src/index.ts --format esm --dts --clean --out-dir dist"
   },
   "license": "MIT",
   "dependencies": {
@@ -24,5 +25,22 @@
   "exports": {
     ".": "./src/index.ts",
     "./print.css": "./src/print.css"
+  },
+  "files": [
+    "dist",
+    "src/print.css"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "./print.css": "./src/print.css"
+    }
   }
 }
