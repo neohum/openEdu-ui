@@ -1,0 +1,302 @@
+@layer components {
+  .oe-scoreboard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--color-surface, #ffffff); /* lint-ignore */
+    color: var(--color-fg, #1e293b); /* lint-ignore */
+    border: 1px solid var(--color-border, #e2e8f0); /* lint-ignore */
+    border-radius: var(--radius-lg, 16px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06); /* lint-ignore */
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+
+  /* Header */
+  .oe-scoreboard__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    border-bottom: 1px solid var(--color-border, #e2e8f0); /* lint-ignore */
+    padding-bottom: var(--space-3);
+  }
+
+  .oe-scoreboard__title-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* lint-ignore */
+    color: #eab308; /* lint-ignore */
+    font-size: 1.25rem; /* lint-ignore */
+  }
+
+  .oe-scoreboard__title {
+    margin: 0;
+    font-size: 1.125rem; /* lint-ignore */
+    font-weight: 700;
+    color: var(--color-fg, #0f172a); /* lint-ignore */
+  }
+
+  .oe-scoreboard__count-badge {
+    font-size: 0.75rem; /* lint-ignore */
+    font-weight: 600;
+    padding: 2px 8px; /* lint-ignore */
+    background: var(--color-surface-sunken, #f1f5f9); /* lint-ignore */
+    border-radius: 9999px;
+    color: var(--color-fg-muted, #64748b); /* lint-ignore */
+  }
+
+  .oe-scoreboard__global-actions {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .oe-scoreboard__header-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* lint-ignore */
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--color-border, #cbd5e1); /* lint-ignore */
+    background: var(--color-surface, #ffffff); /* lint-ignore */
+    color: var(--color-fg, #334155); /* lint-ignore */
+    border-radius: var(--radius-md, 8px);
+    font-size: 0.875rem; /* lint-ignore */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .oe-scoreboard__header-btn:hover:not(:disabled) {
+    background: var(--color-surface-sunken, #f1f5f9); /* lint-ignore */
+    border-color: var(--color-accent, #0284c7); /* lint-ignore */
+  }
+
+  .oe-scoreboard__header-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .oe-scoreboard__header-btn--reset {
+    color: #ef4444; /* lint-ignore */
+  }
+
+  .oe-scoreboard__header-btn--reset:hover:not(:disabled) {
+    background: #fef2f2; /* lint-ignore */
+    border-color: #fca5a5; /* lint-ignore */
+  }
+
+  /* Grid of Group Cards */
+  .oe-scoreboard__grid {
+    display: grid;
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  .oe-scoreboard__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-surface, #ffffff); /* lint-ignore */
+    border: 2px solid var(--color-border, #e2e8f0); /* lint-ignore */
+    border-radius: var(--radius-md, 14px);
+    padding: var(--space-4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* lint-ignore */
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Winner Highlight with Golden Glow */
+  .oe-scoreboard__card--winner {
+    border-color: #eab308; /* lint-ignore */
+    background: linear-gradient(180deg, #fffbeb 0%, #ffffff 40%); /* lint-ignore */
+    box-shadow: 0 6px 20px rgba(234, 179, 8, 0.25); /* lint-ignore */
+    transform: translateY(-2px);
+  }
+
+  .oe-scoreboard__trophy-badge {
+    position: absolute;
+    top: 8px; /* lint-ignore */
+    right: 8px; /* lint-ignore */
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; /* lint-ignore */
+    background: #eab308; /* lint-ignore */
+    color: #ffffff; /* lint-ignore */
+    font-size: 0.75rem; /* lint-ignore */
+    font-weight: 700;
+    padding: 2px 8px; /* lint-ignore */
+    border-radius: 9999px;
+    box-shadow: 0 2px 6px rgba(234, 179, 8, 0.4); /* lint-ignore */
+    animation: oe-trophy-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes oe-trophy-pop {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .oe-scoreboard__color-stripe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  .oe-scoreboard__card-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px; /* lint-ignore */
+    margin-bottom: var(--space-2);
+  }
+
+  .oe-scoreboard__name-input {
+    width: 100%;
+    font-size: 1.125rem; /* lint-ignore */
+    font-weight: 700;
+    color: var(--color-fg, #0f172a); /* lint-ignore */
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm, 6px);
+    padding: 2px 6px; /* lint-ignore */
+    background: transparent;
+    box-sizing: border-box;
+  }
+
+  .oe-scoreboard__name-input:focus {
+    background: var(--color-surface, #ffffff); /* lint-ignore */
+    border-color: var(--color-accent, #0284c7); /* lint-ignore */
+    outline: none;
+  }
+
+  .oe-scoreboard__remove-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--color-fg-muted, #94a3b8); /* lint-ignore */
+    cursor: pointer;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 9999px;
+    transition: all 0.15s ease;
+  }
+
+  .oe-scoreboard__remove-btn:hover {
+    color: #ef4444; /* lint-ignore */
+    background: #fef2f2; /* lint-ignore */
+  }
+
+  /* Score Area */
+  .oe-scoreboard__score-area {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px; /* lint-ignore */
+    margin: var(--space-2) 0;
+  }
+
+  .oe-scoreboard__score-digits {
+    font-size: 3.25rem; /* lint-ignore */
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-fg, #0f172a); /* lint-ignore */
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .oe-scoreboard__score-unit {
+    font-size: 1rem; /* lint-ignore */
+    font-weight: 600;
+    color: var(--color-fg-muted, #64748b); /* lint-ignore */
+  }
+
+  /* Score Action Buttons */
+  .oe-scoreboard__score-actions {
+    display: flex;
+    gap: 6px; /* lint-ignore */
+    width: 100%;
+  }
+
+  .oe-scoreboard__btn-delta {
+    flex: 1;
+    min-height: 44px;
+    border: 1px solid var(--color-border, #cbd5e1); /* lint-ignore */
+    border-radius: var(--radius-md, 8px);
+    font-size: 1rem; /* lint-ignore */
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    background: var(--color-surface, #ffffff); /* lint-ignore */
+  }
+
+  .oe-scoreboard__btn-delta--pos {
+    background: rgba(2, 132, 199, 0.08); /* lint-ignore */
+    color: var(--color-accent, #0284c7); /* lint-ignore */
+    border-color: rgba(2, 132, 199, 0.3); /* lint-ignore */
+  }
+
+  .oe-scoreboard__btn-delta--pos:hover {
+    background: var(--color-accent, #0284c7); /* lint-ignore */
+    color: #ffffff; /* lint-ignore */
+  }
+
+  .oe-scoreboard__btn-delta--pos-5 {
+    background: rgba(16, 185, 129, 0.08); /* lint-ignore */
+    color: #059669; /* lint-ignore */
+    border-color: rgba(16, 185, 129, 0.3); /* lint-ignore */
+  }
+
+  .oe-scoreboard__btn-delta--pos-5:hover {
+    background: #059669; /* lint-ignore */
+    color: #ffffff; /* lint-ignore */
+  }
+
+  .oe-scoreboard__btn-delta--neg {
+    background: rgba(239, 68, 68, 0.06); /* lint-ignore */
+    color: #ef4444; /* lint-ignore */
+    border-color: rgba(239, 68, 68, 0.3); /* lint-ignore */
+  }
+
+  .oe-scoreboard__btn-delta--neg:hover:not(:disabled) {
+    background: #ef4444; /* lint-ignore */
+    color: #ffffff; /* lint-ignore */
+  }
+
+  .oe-scoreboard__btn-delta--neg:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  /* Reset Card Button */
+  .oe-scoreboard__reset-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px; /* lint-ignore */
+    width: 100%;
+    margin-top: var(--space-2);
+    min-height: 36px;
+    border: none;
+    background: transparent;
+    color: var(--color-fg-muted, #94a3b8); /* lint-ignore */
+    font-size: 0.75rem; /* lint-ignore */
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-sm, 6px);
+    transition: all 0.15s ease;
+  }
+
+  .oe-scoreboard__reset-card-btn:hover {
+    color: var(--color-fg, #334155); /* lint-ignore */
+    background: var(--color-surface-sunken, #f1f5f9); /* lint-ignore */
+  }
+}

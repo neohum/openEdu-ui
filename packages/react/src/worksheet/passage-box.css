@@ -1,0 +1,84 @@
+@layer components {
+  .oe-passage-box {
+    position: relative;
+    padding: var(--space-4, 1rem); /* lint-ignore */
+    border-radius: var(--radius-sm, 4px);
+    margin-block: var(--space-3, 0.75rem); /* lint-ignore */
+    font-size: var(--font-size-base, 1rem); /* lint-ignore */
+    line-height: var(--font-leading-body, 1.6);
+    color: var(--color-fg, #1f2937); /* lint-ignore */
+    word-break: keep-all;
+  }
+
+  /* Variants */
+  .oe-passage-box--default {
+    background: var(--color-surface-sunken, #f9fafb); /* lint-ignore */
+    border: 1px solid var(--color-border, #e5e7eb); /* lint-ignore */
+  }
+
+  .oe-passage-box--bordered {
+    background: var(--color-surface, #ffffff); /* lint-ignore */
+    border: 1.5px solid var(--color-fg, #111827); /* lint-ignore */
+  }
+
+  .oe-passage-box--dashed {
+    background: var(--color-surface, #ffffff); /* lint-ignore */
+    border: 1.5px dashed var(--color-border, #9ca3af); /* lint-ignore */
+  }
+
+  .oe-passage-box__header {
+    margin-bottom: var(--space-2, 0.5rem); /* lint-ignore */
+  }
+
+  .oe-passage-box__header--center {
+    text-align: center;
+  }
+
+  .oe-passage-box__header--left {
+    text-align: left;
+  }
+
+  .oe-passage-box__title {
+    font-weight: 700;
+    font-size: var(--font-size-sm, 0.9375rem); /* lint-ignore */
+    color: var(--color-fg, #111827); /* lint-ignore */
+    letter-spacing: 0.05em;
+  }
+
+  .oe-passage-box__body {
+    user-select: text;
+  }
+
+  .oe-passage-box__footer {
+    margin-top: var(--space-2, 0.5rem); /* lint-ignore */
+    text-align: right;
+  }
+
+  .oe-passage-box__source {
+    font-style: normal;
+    font-size: 0.8125rem; /* lint-ignore */
+    color: var(--color-fg-muted, #6b7280); /* lint-ignore */
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .oe-passage-box {
+    background: transparent !important;
+  }
+  .oe-passage-box--default {
+    border: 1px solid #333333 !important; /* lint-ignore */
+  }
+  .oe-passage-box--bordered {
+    border: 1.5px solid #000000 !important; /* lint-ignore */
+  }
+  .oe-passage-box--dashed {
+    border: 1.5px dashed #000000 !important; /* lint-ignore */
+  }
+  .oe-passage-box__title {
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-passage-box__source {
+    color: #333333 !important; /* lint-ignore */
+  }
+}

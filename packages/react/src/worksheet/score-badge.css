@@ -1,0 +1,73 @@
+@layer components {
+  .oe-score-badge {
+    display: inline-flex;
+    align-items: baseline;
+    font-size: var(--font-size-sm, 0.8125rem); /* lint-ignore */
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* Bracket variant: looks like [3점] or [서술형 10점] */
+  .oe-score-badge--bracket {
+    color: var(--color-fg-muted, #4b5563); /* lint-ignore */
+    font-weight: 600;
+  }
+
+  .oe-score-badge--bracket .oe-score-badge__score {
+    color: var(--color-fg, #111827); /* lint-ignore */
+  }
+
+  /* Pill variant: small rounded badge */
+  .oe-score-badge--pill {
+    padding: 0.15rem 0.5rem; /* lint-ignore */
+    border-radius: var(--radius-full, 9999px);
+    background: var(--color-surface-sunken, #f3f4f6); /* lint-ignore */
+    color: var(--color-fg, #1f2937); /* lint-ignore */
+    font-weight: 600;
+    border: 1px solid var(--color-border, #e5e7eb); /* lint-ignore */
+  }
+
+  /* Outline variant: rectangular outline badge */
+  .oe-score-badge--outline {
+    padding: 0.15rem 0.4rem; /* lint-ignore */
+    border-radius: var(--radius-sm, 3px);
+    border: 1px solid var(--color-border, #9ca3af); /* lint-ignore */
+    background: #ffffff; /* lint-ignore */
+    color: var(--color-fg, #111827); /* lint-ignore */
+    font-weight: 600;
+  }
+
+  .oe-score-badge__bracket {
+    color: var(--color-fg-muted, #6b7280); /* lint-ignore */
+  }
+
+  .oe-score-badge__label {
+    margin-right: 0.2rem; /* lint-ignore */
+  }
+
+  .oe-score-badge__unit {
+    margin-left: 0.1rem; /* lint-ignore */
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .oe-score-badge {
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-score-badge--pill {
+    background: transparent !important;
+    border-color: #000000 !important; /* lint-ignore */
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-score-badge--outline {
+    border-color: #000000 !important; /* lint-ignore */
+    background: transparent !important;
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-score-badge--bracket .oe-score-badge__score {
+    color: #000000 !important; /* lint-ignore */
+  }
+}

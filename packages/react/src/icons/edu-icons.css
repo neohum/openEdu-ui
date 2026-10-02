@@ -1,0 +1,25 @@
+@layer components {
+  .oe-edu-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-style: normal;
+    vertical-align: middle;
+    color: currentColor;
+    flex-shrink: 0;
+    font-size: var(--oe-icon-size, var(--font-size-2xl));
+  }
+
+  .oe-edu-icon[data-size="sm"] {
+    --oe-icon-size: var(--font-size-body);
+  }
+
+  .oe-edu-icon[data-size="md"] {
+    --oe-icon-size: var(--font-size-2xl);
+  }
+
+  .oe-edu-icon[data-size="lg"] {
+    --oe-icon-size: var(--font-size-4xl);
+  }
+}

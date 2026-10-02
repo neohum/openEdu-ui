@@ -1,0 +1,101 @@
+@layer components {
+  .oe-math-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-fg);
+  }
+
+  .oe-math-toolbar__categories {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-2);
+  }
+
+  .oe-math-toolbar__cat-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: var(--space-3);
+    min-height: var(--space-8);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-fg-muted);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: background var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease);
+  }
+
+  .oe-math-toolbar__cat-btn:hover:not(:disabled) {
+    background: var(--color-surface-sunken);
+    color: var(--color-fg);
+  }
+
+  .oe-math-toolbar__cat-btn[data-active="true"] {
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+  }
+
+  .oe-math-toolbar__cat-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .oe-math-toolbar__cat-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .oe-math-toolbar__grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .oe-math-toolbar__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--target-min);
+    min-height: var(--target-min);
+    padding: var(--space-1);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-fg);
+    cursor: pointer;
+    transition: background var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease);
+  }
+
+  .oe-math-toolbar__btn:hover:not(:disabled) {
+    background: var(--color-surface-sunken);
+    border-color: var(--color-border);
+  }
+
+  .oe-math-toolbar__btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .oe-math-toolbar__btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  /* Compact mode */
+  .oe-math-toolbar[data-compact="true"] .oe-math-toolbar__btn {
+    min-width: var(--space-8);
+    min-height: var(--space-8);
+  }
+}
