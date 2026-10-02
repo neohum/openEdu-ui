@@ -13,6 +13,7 @@
   "dependencies": {
     "@openedu/content": "workspace:^",
     "@openedu/core": "workspace:^",
+    "@openedu/ink": "workspace:^",
     "@radix-ui/react-dialog": "^1.1.23",
     "@radix-ui/react-tooltip": "^1.2.16"
   },

@@ -49,9 +49,18 @@ const data = paper.parse(json); // 정답↔선택지 id, 빈칸, passageRef 등
 
 `pnpm print:sample`이 샘플 학습지를 학생용/교사용 A4 PDF로 만듭니다(Chrome 필요, `CHROME_PATH`로 지정 가능).
 
-## 판서 엔진 연결
+## 판서 엔진과 컴포넌트
 
-`@openedu/core`의 `createPointerRouter`가 펜은 `ink`, 손가락은 `ui`로 나누고 손바닥 접촉과 펜 사용 중 터치를 무시합니다. 판서 엔진은 `InkLayer` 인터페이스를 구현해 연결합니다.
+`@openedu/ink`는 `perfect-freehand` 기반의 경량 판서 엔진(펜, 형광펜, 지우개, undo/redo, 이미지 내보내기)을 제공합니다.
+`@openedu/react`의 `InkBoard` 또는 `InkToolbar` + `InkCanvas`를 통해 바로 전자칠판 판서를 구성할 수 있습니다.
+
+```tsx
+import { InkBoard } from "@openedu/react";
+
+<InkBoard label="수업 판서" finger toolbarPlacement="bottom" />
+```
+
+`@openedu/core`의 `createPointerRouter`가 펜은 `ink`, 손가락은 `ui`로 나누고 손바닥 접촉과 펜 사용 중 터치를 무시합니다. 다른 자체 엔진을 사용할 때는 `InkLayer` 인터페이스를 구현해 연결할 수도 있습니다.
 
 ## 검증
 
