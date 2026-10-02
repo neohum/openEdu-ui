@@ -1,0 +1,79 @@
+@layer components {
+  .oe-cut-line {
+    display: flex;
+    align-items: center;
+    color: var(--color-fg-muted, #6b7280); /* lint-ignore */
+    user-select: none;
+    font-size: var(--font-size-sm, 0.8125rem); /* lint-ignore */
+  }
+
+  .oe-cut-line--horizontal {
+    flex-direction: row;
+    width: 100%;
+    margin-block: var(--space-4, 1rem); /* lint-ignore */
+  }
+
+  .oe-cut-line--vertical {
+    flex-direction: column;
+    height: 100%;
+    margin-inline: var(--space-4, 1rem); /* lint-ignore */
+  }
+
+  .oe-cut-line__segment {
+    flex: 1;
+  }
+
+  .oe-cut-line--horizontal.oe-cut-line--dashed .oe-cut-line__segment {
+    border-bottom: 1.5px dashed var(--color-border, #9ca3af); /* lint-ignore */
+  }
+
+  .oe-cut-line--horizontal.oe-cut-line--dotted .oe-cut-line__segment {
+    border-bottom: 2px dotted var(--color-border, #9ca3af); /* lint-ignore */
+  }
+
+  .oe-cut-line--vertical.oe-cut-line--dashed .oe-cut-line__segment {
+    border-right: 1.5px dashed var(--color-border, #9ca3af); /* lint-ignore */
+  }
+
+  .oe-cut-line--vertical.oe-cut-line--dotted .oe-cut-line__segment {
+    border-right: 2px dotted var(--color-border, #9ca3af); /* lint-ignore */
+  }
+
+  .oe-cut-line__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem; /* lint-ignore */
+    padding-inline: var(--space-3, 0.75rem); /* lint-ignore */
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .oe-cut-line--vertical .oe-cut-line__badge {
+    padding-inline: 0;
+    padding-block: var(--space-3, 0.75rem); /* lint-ignore */
+    writing-mode: vertical-rl;
+  }
+
+  .oe-cut-line__icon {
+    font-size: 0.9375rem; /* lint-ignore */
+  }
+
+  .oe-cut-line__label {
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .oe-cut-line {
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-cut-line--horizontal.oe-cut-line--dashed .oe-cut-line__segment,
+  .oe-cut-line--horizontal.oe-cut-line--dotted .oe-cut-line__segment {
+    border-bottom-color: #000000 !important; /* lint-ignore */
+  }
+  .oe-cut-line--vertical.oe-cut-line--dashed .oe-cut-line__segment,
+  .oe-cut-line--vertical.oe-cut-line--dotted .oe-cut-line__segment {
+    border-right-color: #000000 !important; /* lint-ignore */
+  }
+}

@@ -1,0 +1,231 @@
+@layer components {
+  .oe-omr-card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #8b0000; /* Classic dark crimson/burgundy OMR border or customizable */ /* lint-ignore */
+    border-radius: var(--radius-sm, 4px);
+    background: #fffdfa; /* Slightly warm paper tone */ /* lint-ignore */
+    color: var(--color-fg, #111827); /* lint-ignore */
+    padding: var(--space-3, 0.75rem); /* lint-ignore */
+    user-select: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* lint-ignore */
+  }
+
+  .oe-omr-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4, 1rem); /* lint-ignore */
+    padding-bottom: var(--space-2, 0.5rem); /* lint-ignore */
+    margin-bottom: var(--space-3, 0.75rem); /* lint-ignore */
+    border-bottom: 1.5px solid #8b0000; /* lint-ignore */
+    flex-wrap: wrap;
+  }
+
+  .oe-omr-card__header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem; /* lint-ignore */
+  }
+
+  .oe-omr-card__title {
+    font-size: 1.125rem; /* lint-ignore */
+    font-weight: 800;
+    color: #8b0000; /* lint-ignore */
+    letter-spacing: 0.05em;
+  }
+
+  .oe-omr-card__subtitle {
+    font-size: 0.75rem; /* lint-ignore */
+    color: var(--color-fg-muted, #6b7280); /* lint-ignore */
+  }
+
+  .oe-omr-card__student-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3, 0.75rem); /* lint-ignore */
+    font-size: 0.8125rem; /* lint-ignore */
+  }
+
+  .oe-omr-card__info-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem; /* lint-ignore */
+  }
+
+  .oe-omr-card__info-label {
+    color: var(--color-fg-muted, #6b7280); /* lint-ignore */
+  }
+
+  .oe-omr-card__info-val {
+    font-weight: 700;
+    border-bottom: 1px solid #111827; /* lint-ignore */
+    min-width: 3.5rem;
+    text-align: center;
+  }
+
+  .oe-omr-card__body {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-3, 0.75rem); /* lint-ignore */
+    overflow-x: auto;
+  }
+
+  /* Timing Track Bars */
+  .oe-omr-card__timing-track {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 0.75rem;
+    padding-block: 1.5rem 0.25rem; /* lint-ignore */
+  }
+
+  .oe-omr-card__timing-block {
+    width: 100%;
+    height: 0.5rem;
+    background: #111827; /* lint-ignore */
+    margin-bottom: 0.25rem; /* lint-ignore */
+  }
+
+  .oe-omr-card__columns {
+    display: flex;
+    flex: 1;
+    gap: var(--space-6, 1.5rem); /* lint-ignore */
+  }
+
+  .oe-omr-card__column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; /* lint-ignore */
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .oe-omr-card__col-header {
+    display: flex;
+    align-items: center;
+    background: #fee2e2; /* lint-ignore */
+    color: #991b1b; /* lint-ignore */
+    padding: 0.25rem 0.5rem; /* lint-ignore */
+    font-size: 0.75rem; /* lint-ignore */
+    font-weight: 700;
+    border-radius: var(--radius-sm, 2px);
+  }
+
+  .oe-omr-card__th-num {
+    width: 2.25rem;
+    text-align: center;
+  }
+
+  .oe-omr-card__th-choices {
+    flex: 1;
+    text-align: center;
+  }
+
+  .oe-omr-card__row {
+    display: flex;
+    align-items: center;
+    padding: 0.15rem 0.25rem; /* lint-ignore */
+    border-bottom: 1px dotted #e5e7eb; /* lint-ignore */
+  }
+
+  .oe-omr-card__row:hover {
+    background: rgba(0, 0, 0, 0.02); /* lint-ignore */
+  }
+
+  .oe-omr-card__q-num {
+    width: 2rem;
+    font-size: 0.8125rem; /* lint-ignore */
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-fg-muted, #374151); /* lint-ignore */
+  }
+
+  .oe-omr-card__bubbles {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    gap: 0.25rem; /* lint-ignore */
+  }
+
+  /* OMR Oval Bubble */
+  .oe-omr-card__bubble {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.1rem;
+    padding: 0;
+    border-radius: 50% / 40%; /* Oval shape */
+    border: 1.25px solid #8b0000; /* lint-ignore */
+    background: #ffffff; /* lint-ignore */
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.1s ease;
+    outline-offset: 2px;
+  }
+
+  .oe-omr-card__bubble:focus-visible {
+    outline: 2px solid #2563eb; /* lint-ignore */
+  }
+
+  .oe-omr-card__bubble[disabled] {
+    cursor: not-allowed;
+  }
+
+  .oe-omr-card__bubble:not([disabled]):hover {
+    border-color: #000000; /* lint-ignore */
+    background: #fef2f2; /* lint-ignore */
+  }
+
+  .oe-omr-card__bubble-inner {
+    font-size: 0.75rem; /* lint-ignore */
+    line-height: 1;
+    color: #8b0000; /* lint-ignore */
+    font-weight: 600;
+  }
+
+  /* Computer Pen Marked Oval simulation */
+  .oe-omr-card__bubble[data-marked="true"] {
+    background: #111827 !important; /* lint-ignore */
+    border-color: #111827 !important; /* lint-ignore */
+    transform: scale(1.05);
+  }
+
+  .oe-omr-card__bubble[data-marked="true"] .oe-omr-card__bubble-inner {
+    color: #ffffff !important; /* lint-ignore */
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .oe-omr-card {
+    border-color: #000000 !important; /* lint-ignore */
+    background: #ffffff !important; /* lint-ignore */
+    box-shadow: none !important;
+  }
+  .oe-omr-card__header {
+    border-bottom-color: #000000 !important; /* lint-ignore */
+  }
+  .oe-omr-card__title {
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-omr-card__timing-block {
+    background: #000000 !important; /* lint-ignore */
+  }
+  .oe-omr-card__col-header {
+    background: #f3f4f6 !important; /* lint-ignore */
+    color: #000000 !important; /* lint-ignore */
+    border: 1px solid #000000 !important; /* lint-ignore */
+  }
+  .oe-omr-card__bubble {
+    border-color: #000000 !important; /* lint-ignore */
+  }
+  .oe-omr-card__bubble-inner {
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-omr-card__bubble[data-marked="true"] {
+    background: #000000 !important; /* lint-ignore */
+    border-color: #000000 !important; /* lint-ignore */
+  }
+}

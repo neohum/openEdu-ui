@@ -1,0 +1,166 @@
+@layer components {
+  .oe-check-score-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3, 0.75rem); /* lint-ignore */
+    background: #ffffff; /* lint-ignore */
+    color: var(--color-fg, #111827); /* lint-ignore */
+  }
+
+  .oe-check-score-grid__tables {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3, 0.75rem); /* lint-ignore */
+    overflow-x: auto;
+  }
+
+  .oe-check-score-grid__table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 380px;
+    border: 1.5px solid var(--color-fg, #111827); /* lint-ignore */
+    text-align: center;
+    font-size: var(--font-size-sm, 0.875rem); /* lint-ignore */
+  }
+
+  .oe-check-score-grid__th {
+    border: 1px solid var(--color-border, #9ca3af); /* lint-ignore */
+    padding: 0.35rem 0.25rem; /* lint-ignore */
+    background: var(--color-surface-sunken, #f3f4f6); /* lint-ignore */
+    font-weight: 700;
+    min-width: 1.75rem;
+  }
+
+  .oe-check-score-grid__th--label {
+    background: var(--color-surface-sunken, #e5e7eb); /* lint-ignore */
+    width: 3.5rem;
+    min-width: 3.5rem;
+  }
+
+  .oe-check-score-grid__td {
+    border: 1px solid var(--color-border, #9ca3af); /* lint-ignore */
+    padding: 0.35rem 0.25rem; /* lint-ignore */
+    height: 1.75rem;
+  }
+
+  .oe-check-score-grid__td--point {
+    font-size: 0.75rem; /* lint-ignore */
+    color: var(--color-fg-muted, #4b5563); /* lint-ignore */
+  }
+
+  .oe-check-score-grid__td--result {
+    font-weight: 800;
+  }
+
+  .oe-check-score-grid__td--interactive {
+    cursor: pointer;
+  }
+
+  .oe-check-score-grid__td--interactive:hover {
+    background: rgba(37, 99, 235, 0.05); /* lint-ignore */
+  }
+
+  .oe-check-score-grid__mark-o {
+    color: #dc2626; /* lint-ignore */
+    font-size: 1.1rem; /* lint-ignore */
+    line-height: 1;
+  }
+
+  .oe-check-score-grid__mark-x {
+    color: #2563eb; /* lint-ignore */
+    font-size: 1.1rem; /* lint-ignore */
+    line-height: 1;
+  }
+
+  .oe-check-score-grid__summary {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-4, 1rem); /* lint-ignore */
+    flex-wrap: wrap;
+  }
+
+  .oe-check-score-grid__total-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* lint-ignore */
+    padding: 0.35rem 0.75rem; /* lint-ignore */
+    border: 1.5px solid var(--color-fg, #111827); /* lint-ignore */
+    border-radius: var(--radius-sm, 4px);
+    font-weight: 700;
+  }
+
+  .oe-check-score-grid__total-label {
+    font-size: 0.8125rem; /* lint-ignore */
+    color: var(--color-fg-muted, #4b5563); /* lint-ignore */
+  }
+
+  .oe-check-score-grid__total-value {
+    font-size: 1.125rem; /* lint-ignore */
+    color: #dc2626; /* lint-ignore */
+  }
+
+  .oe-check-score-grid__signature-box {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.75rem; /* lint-ignore */
+    border: 1px solid var(--color-border, #9ca3af); /* lint-ignore */
+    border-radius: var(--radius-sm, 4px);
+    min-width: 6.5rem;
+    min-height: 3rem;
+  }
+
+  .oe-check-score-grid__signature-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* lint-ignore */
+    font-size: 0.75rem; /* lint-ignore */
+    color: var(--color-fg-muted, #6b7280); /* lint-ignore */
+    margin-bottom: 0.25rem; /* lint-ignore */
+  }
+
+  .oe-check-score-grid__signature-date {
+    font-size: 0.7rem; /* lint-ignore */
+  }
+
+  .oe-check-score-grid__signature-seal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .oe-check-score-grid__seal-placeholder {
+    font-size: 0.75rem; /* lint-ignore */
+    color: var(--color-fg-muted, #9ca3af); /* lint-ignore */
+  }
+
+  .oe-check-score-grid__signer {
+    font-weight: 700;
+    font-size: 0.9375rem; /* lint-ignore */
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .oe-check-score-grid__table {
+    border-color: #000000 !important; /* lint-ignore */
+  }
+  .oe-check-score-grid__th,
+  .oe-check-score-grid__td {
+    border-color: #000000 !important; /* lint-ignore */
+    background: transparent !important;
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-check-score-grid__total-box {
+    border-color: #000000 !important; /* lint-ignore */
+  }
+  .oe-check-score-grid__total-value {
+    color: #000000 !important; /* lint-ignore */
+  }
+  .oe-check-score-grid__mark-o,
+  .oe-check-score-grid__mark-x {
+    color: #000000 !important; /* lint-ignore */
+  }
+}

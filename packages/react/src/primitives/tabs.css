@@ -1,0 +1,71 @@
+@layer components {
+  .oe-tabs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .oe-tabs-list {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-surface-sunken);
+    padding: var(--space-1);
+    border-radius: var(--radius-md);
+    gap: var(--space-1);
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .oe-tabs-trigger {
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--target-min);
+    min-width: var(--target-min);
+    padding: var(--space-2) var(--space-4);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-fg-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    transition: background-color var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease);
+  }
+
+  .oe-tabs-trigger:hover:not(:disabled) {
+    color: var(--color-fg);
+  }
+
+  .oe-tabs-trigger[data-state="active"] {
+    background-color: var(--color-surface);
+    color: var(--color-fg);
+    box-shadow: var(--elevation-1);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .oe-tabs-trigger:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .oe-tabs-trigger:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .oe-tabs-content {
+    margin-top: var(--space-3);
+    outline: none;
+  }
+
+  .oe-tabs-content:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
