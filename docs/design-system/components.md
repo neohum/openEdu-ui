@@ -17,12 +17,12 @@
 | 컴포넌트 | 설명 |
 | --- | --- |
 | `AdaptiveDock` | 하단 1/3 안에 머무는 도구 막대. 좌/우 스냅(드래그·방향키), 교사/학생 높이 |
-| `FocusCurtain` | 4방향 가림막. 드래그, 방향키, Home/End |
+| `FocusCurtain` | 4방향 가림막 및 스포트라이트 모드(원형/사각형 조명, 드래그·방향키·Home/End 조작) |
 | `RadialMenu` | 터치 지점 주변 방사형 메뉴, 화면 밖으로 나가지 않음 |
 | `SplitBoard` | 2~4개 독립 영역, 영역별 포인터 라우팅과 푸터 |
-| `InkToolbar` | 판서 도구 막대(펜·형광펜·지우개, 6색 팔레트, 굵기, undo/redo, 2단계 clear) |
+| `InkToolbar` | 판서 도구 막대(펜·형광펜·지우개, 6색 팔레트, 굵기, undo/redo, 2단계 clear, PNG 내보내기) |
 | `InkCanvas` | `@openedu/ink` 엔진과 포인터 라우터를 연결하는 캔버스 호스트 영역 |
-| `InkBoard` | `InkCanvas`와 `InkToolbar`가 결합된 올인원 전자칠판 판서 보드 컴포넌트 |
+| `InkBoard` | `InkCanvas`와 `InkToolbar`가 결합된 올인원 전자칠판 판서 보드 컴포넌트(PNG 자동 다운로드 지원) |
 
 ## 문제지
 
@@ -47,6 +47,6 @@
 
 ## 알려진 한계
 
-- matching은 `select`, ordering은 위/아래 버튼입니다(드래그 방식은 후속).
-- 스포트라이트 모드와 핫스팟 인쇄 이미지는 아직 없습니다.
+- matching은 `select` 드롭다운 방식입니다 (선 잇기 제스처 캔버스는 후속).
+- 핫스팟 인쇄 이미지는 아직 없습니다.
 - 실제 전자칠판 하드웨어 검증은 하지 않았습니다.

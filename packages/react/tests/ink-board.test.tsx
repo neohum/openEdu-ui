@@ -152,4 +152,71 @@ describe("InkBoard", () => {
     const { container } = render(<InkBoard label="수업 판서" />);
     expect(await runAxe(container)).toEqual([]);
   });
+
+  it("renders export button in toolbar", () => {
+    render(<InkBoard label="수업 판서" />);
+    expect(screen.getByRole("button", { name: "내보내기" })).toBeInTheDocument();
+  });
+
+  it("exports drawing as PNG, calls onExport and triggers file download", async () => {
+    const user = userEvent.setup();
+    const onExport = vi.fn();
+    const mockBlob = new Blob(["png-data"], { type: "image/png" });
+    const engine = createInkEngine();
+    vi.spyOn(engine, "toBlob").mockResolvedValue(mockBlob);
+
+    const createObjectURLSpy = vi.fn().mockReturnValue("blob:mock-url-123");
+    const revokeObjectURLSpy = vi.fn();
+    window.URL.createObjectURL = createObjectURLSpy;
+    window.URL.revokeObjectURL = revokeObjectURLSpy;
+
+    let clickedDownload = "";
+    let clickedHref = "";
+    const clickSpy = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
+      clickedDownload = this.download;
+      clickedHref = this.href;
+    });
+
+    render(<InkBoard engine={engine} onExport={onExport} />);
+
+    const exportBtn = screen.getByRole("button", { name: "내보내기" });
+    await user.click(exportBtn);
+
+    expect(engine.toBlob).toHaveBeenCalledWith("image/png");
+    expect(onExport).toHaveBeenCalledWith(mockBlob);
+    expect(createObjectURLSpy).toHaveBeenCalledWith(mockBlob);
+    expect(clickedDownload).toBe("openedu-drawing.png");
+    expect(clickedHref).toBe("blob:mock-url-123");
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+    expect(revokeObjectURLSpy).toHaveBeenCalledWith("blob:mock-url-123");
+
+    clickSpy.mockRestore();
+  });
+
+  it("supports custom exportFilename", async () => {
+    const user = userEvent.setup();
+    const mockBlob = new Blob(["png-data"], { type: "image/png" });
+    const engine = createInkEngine();
+    vi.spyOn(engine, "toBlob").mockResolvedValue(mockBlob);
+
+    const createObjectURLSpy = vi.fn().mockReturnValue("blob:mock-custom-url");
+    const revokeObjectURLSpy = vi.fn();
+    window.URL.createObjectURL = createObjectURLSpy;
+    window.URL.revokeObjectURL = revokeObjectURLSpy;
+
+    let clickedDownload = "";
+    const clickSpy = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
+      clickedDownload = this.download;
+    });
+
+    render(<InkBoard engine={engine} exportFilename="science-notes.png" />);
+
+    await user.click(screen.getByRole("button", { name: "내보내기" }));
+
+    expect(clickedDownload).toBe("science-notes.png");
+    expect(createObjectURLSpy).toHaveBeenCalledWith(mockBlob);
+    expect(revokeObjectURLSpy).toHaveBeenCalledWith("blob:mock-custom-url");
+
+    clickSpy.mockRestore();
+  });
 });

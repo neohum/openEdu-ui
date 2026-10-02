@@ -142,6 +142,11 @@ export function App() {
                 <p className="sc-curtain-content">정답: 직접 문장을 따라 쓰며 구조를 익히는 것이 중요하다.</p>
               </FocusCurtain>
             </Card>
+            <Card>
+              <FocusCurtain label="핵심 스포트라이트" mode="spotlight" spotlightRadius={80}>
+                <p className="sc-curtain-content">스포트라이트 모드: 원하는 핵심 단어나 풀이 과정을 조명으로 강조합니다.</p>
+              </FocusCurtain>
+            </Card>
             <div className="sc-split">
               <SplitBoard zones={2} label="모둠 활동" renderZone={(i) => <p>모둠 {i + 1}의 풀이 공간</p>} renderFooter={(i) => <Button size="sm">모둠 {i + 1} 제출</Button>} />
             </div>
