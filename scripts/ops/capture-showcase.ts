@@ -10,7 +10,17 @@ import { startServer } from "./serve-showcase.ts";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const dist = join(root, "apps/showcase/dist");
 if (!existsSync(join(dist, "index.html"))) throw new Error("apps/showcase/dist missing — run `pnpm --filter showcase build` first");
-const chrome = [process.env.CHROME_PATH, "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find((p) => p && existsSync(p));
+const chrome = [
+  process.env.CHROME_PATH,
+  "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+  process.env.LOCALAPPDATA ? `${process.env.LOCALAPPDATA}/Google/Chrome/Application/chrome.exe` : undefined,
+  "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+  "C:/Program Files/Microsoft/Edge/Application/msedge.exe",
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/usr/bin/google-chrome",
+  "/usr/bin/chromium",
+].find((p) => p && existsSync(p));
 if (!chrome) throw new Error("Chrome not found. Set CHROME_PATH.");
 
 const SURFACES = [
