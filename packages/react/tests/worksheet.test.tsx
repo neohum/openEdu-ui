@@ -45,6 +45,85 @@ describe("ItemRenderer — one UI per question type", () => {
     expect(onChange).toHaveBeenLastCalledWith({ a: "y" });
   });
 
+  it("matching: renders anchor pins on left and right columns", () => {
+    render(<ItemRenderer item={byType("matching")} />);
+    expect(screen.getByRole("button", { name: "대한민국 연결점" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "일본 연결점" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "도쿄 연결점" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "서울 연결점" })).toBeInTheDocument();
+  });
+
+  it("matching: connects anchors via click and renders SVG line", async () => {
+    const onChange = vi.fn();
+    const { container } = render(<ItemRenderer item={byType("matching")} onChange={onChange} />);
+
+    expect(container.querySelectorAll("line.oe-matching__line")).toHaveLength(0);
+
+    await userEvent.click(screen.getByRole("button", { name: "대한민국 연결점" }));
+    expect(screen.getByRole("button", { name: "대한민국 연결점" })).toHaveAttribute("aria-pressed", "true");
+
+    await userEvent.click(screen.getByRole("button", { name: "서울 연결점" }));
+    expect(onChange).toHaveBeenLastCalledWith({ a: "y" });
+  });
+
+  it("matching: renders SVG lines for connected items and allows disconnecting by clicking line", async () => {
+    const onChange = vi.fn();
+    const { container, rerender } = render(<ItemRenderer item={byType("matching")} value={{ a: "y" }} onChange={onChange} />);
+
+    const line = container.querySelector("line[data-left='a'][data-right='y']");
+    expect(line).toBeInTheDocument();
+    expect(line).toHaveAttribute("x1");
+    expect(line).toHaveAttribute("y1");
+    expect(line).toHaveAttribute("x2");
+    expect(line).toHaveAttribute("y2");
+
+    await userEvent.click(line!);
+    expect(onChange).toHaveBeenLastCalledWith({});
+
+    rerender(<ItemRenderer item={byType("matching")} value={{}} onChange={onChange} />);
+    expect(container.querySelectorAll("line.oe-matching__line")).toHaveLength(0);
+  });
+
+  it("matching: reselecting already connected anchors disconnects them", async () => {
+    const onChange = vi.fn();
+    render(<ItemRenderer item={byType("matching")} value={{ a: "y" }} onChange={onChange} />);
+
+    await userEvent.click(screen.getByRole("button", { name: "대한민국 연결점" }));
+    await userEvent.click(screen.getByRole("button", { name: "서울 연결점" }));
+    expect(onChange).toHaveBeenLastCalledWith({});
+  });
+
+  it("matching: bidirectional synchronization between select dropdown and line", async () => {
+    const onChange = vi.fn();
+    const { container, rerender } = render(<ItemRenderer item={byType("matching")} onChange={onChange} />);
+
+    await userEvent.selectOptions(screen.getByLabelText("대한민국"), "y");
+    expect(onChange).toHaveBeenLastCalledWith({ a: "y" });
+
+    rerender(<ItemRenderer item={byType("matching")} value={{ a: "y" }} onChange={onChange} />);
+    expect(container.querySelector("line[data-left='a'][data-right='y']")).toBeInTheDocument();
+    expect(screen.getByLabelText("대한민국")).toHaveValue("y");
+  });
+
+  it("matching: readOnly disables anchors and prevents changes", async () => {
+    const onChange = vi.fn();
+    const { container } = render(<ItemRenderer item={byType("matching")} value={{ a: "y" }} readOnly onChange={onChange} />);
+
+    const leftAnchor = screen.getByRole("button", { name: "대한민국 연결점" });
+    const rightAnchor = screen.getByRole("button", { name: "서울 연결점" });
+    expect(leftAnchor).toBeDisabled();
+    expect(rightAnchor).toBeDisabled();
+
+    await userEvent.click(leftAnchor);
+    expect(leftAnchor).toHaveAttribute("aria-pressed", "false");
+    expect(onChange).not.toHaveBeenCalled();
+
+    const line = container.querySelector("line[data-left='a'][data-right='y']");
+    expect(line).toBeInTheDocument();
+    await userEvent.click(line!);
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
   it("ordering: moves items with up/down buttons", async () => {
     const onChange = vi.fn();
     render(<ItemRenderer item={byType("ordering")} onChange={onChange} />);

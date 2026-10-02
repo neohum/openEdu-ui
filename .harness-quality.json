@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "required": ["test"],
+  "conditional": [
+    {
+      "paths": ["src/ui/**", "app/**", "pages/**", "**/*.tsx", "**/*.jsx", "**/*.html", "**/*.vue"],
+      "require": ["e2e", "visual", "responsive"]
+    },
+    {
+      "paths": ["bin/**", "scripts/**"],
+      "require": ["cli-smoke"]
+    }
+  ],
+  "commands": {
+    "lint": "auto",
+    "typecheck": "auto",
+    "test": "auto",
+    "e2e": "auto",
+    "visual": "auto",
+    "responsive": "node scripts/ops/verify-responsive.ts",
+    "cli-smoke": "node scripts/route.ts \"health check\""
+  }
+}
