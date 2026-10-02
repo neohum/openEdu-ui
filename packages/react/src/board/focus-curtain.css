@@ -22,4 +22,33 @@
   .oe-curtain[data-edge="bottom"] .oe-curtain__handle { bottom: calc((1 - var(--oe-open)) * 100%); }
   .oe-curtain[data-edge="left"] .oe-curtain__handle { left: calc((1 - var(--oe-open)) * 100%); }
   .oe-curtain[data-edge="right"] .oe-curtain__handle { right: calc((1 - var(--oe-open)) * 100%); }
+
+  .oe-curtain__backdrop {
+    position: absolute;
+    inset: 0;
+    touch-action: none;
+    cursor: crosshair;
+  }
+
+  .oe-curtain[data-mode="spotlight"] .oe-curtain__handle {
+    left: calc(var(--oe-spotlight-x, 0.5) * 100%);
+    top: calc(var(--oe-spotlight-y, 0.5) * 100%);
+    right: auto;
+    bottom: auto;
+    width: calc(var(--oe-spotlight-radius, 100px) * 2);
+    height: calc(var(--oe-spotlight-radius, 100px) * 2);
+    min-width: var(--target-min);
+    min-height: var(--target-min);
+    translate: -50% -50%;
+    background: transparent;
+    box-shadow: 0 0 0 9999px var(--color-fg);
+    opacity: 0.92;
+    border: 2px solid var(--color-accent);
+  }
+  .oe-curtain[data-mode="spotlight"][data-shape="circle"] .oe-curtain__handle {
+    border-radius: var(--radius-full);
+  }
+  .oe-curtain[data-mode="spotlight"][data-shape="rect"] .oe-curtain__handle {
+    border-radius: var(--radius-lg);
+  }
 }

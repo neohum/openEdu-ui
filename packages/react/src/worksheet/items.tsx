@@ -1,5 +1,5 @@
 import type { QuestionItem } from "@openedu/content";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Button } from "../primitives/button.tsx";
 import { Icon } from "../primitives/icon.tsx";
 import { Input } from "../primitives/input.tsx";
@@ -106,8 +106,10 @@ export function MatchingItem({ item, value, defaultValue, onChange, readOnly, nu
 
 export function OrderingItem({ item, value, defaultValue, onChange, readOnly, number }: ItemProps<Of<"ordering">> & { number?: number }) {
   const [current, set] = useControllable<AnswerValue>(value, defaultValue ?? item.items.map((i) => i.id), onChange);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const order = asIds(current);
   const byId = new Map(item.items.map((i) => [i.id, i.content]));
+
   const move = (index: number, delta: number) => {
     const next = [...order];
     const target = index + delta;
@@ -115,11 +117,83 @@ export function OrderingItem({ item, value, defaultValue, onChange, readOnly, nu
     [next[index], next[target]] = [next[target]!, next[index]!];
     set(next);
   };
+
+  const handleDragStart = (e: React.DragEvent<HTMLLIElement>, index: number) => {
+    if (readOnly) {
+      e.preventDefault();
+      return;
+    }
+    try {
+      e.dataTransfer?.setData("text/plain", String(index));
+      if (e.dataTransfer) {
+        e.dataTransfer.effectAllowed = "move";
+      }
+    } catch {
+      /* ignore in environments with partial DataTransfer */
+    }
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+    if (readOnly) return;
+    e.preventDefault();
+    try {
+      if (e.dataTransfer) {
+        e.dataTransfer.dropEffect = "move";
+      }
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLLIElement>, targetIndex: number) => {
+    if (readOnly) return;
+    e.preventDefault();
+    e.stopPropagation();
+    let sourceIndex = draggedIndex;
+    try {
+      const data = e.dataTransfer?.getData("text/plain");
+      if (data !== undefined && data !== "") {
+        const parsed = Number.parseInt(data, 10);
+        if (!Number.isNaN(parsed)) {
+          sourceIndex = parsed;
+        }
+      }
+    } catch {
+      /* fallback to draggedIndex */
+    }
+    if (sourceIndex != null && sourceIndex >= 0 && sourceIndex < order.length && sourceIndex !== targetIndex) {
+      const next = [...order];
+      const [moved] = next.splice(sourceIndex, 1);
+      if (moved !== undefined) {
+        next.splice(targetIndex, 0, moved);
+        set(next);
+      }
+    }
+    setDraggedIndex(null);
+  };
+
   return (
     <Shell item={item} number={number}>
       <ol className="oe-ordering">
         {order.map((id, i) => (
-          <li key={id} className="oe-ordering__row">
+          <li
+            key={id}
+            className={`oe-ordering__row${draggedIndex === i ? " oe-ordering__row--dragging" : ""}`}
+            data-dragging={draggedIndex === i || undefined}
+            draggable={!readOnly}
+            onDragStart={(e) => handleDragStart(e, i)}
+            onDragOver={handleDragOver}
+            onDragEnd={handleDragEnd}
+            onDrop={(e) => handleDrop(e, i)}
+          >
+            <span className="oe-ordering__handle" aria-hidden="true">
+              <Icon name="dots-six-vertical" />
+            </span>
             <span>{byId.get(id)}</span>
             <Button variant="ghost" size="sm" disabled={readOnly || i === 0} aria-label={`${byId.get(id)} 위로`} onClick={() => move(i, -1)}><Icon name="arrow-up" /></Button>
             <Button variant="ghost" size="sm" disabled={readOnly || i === order.length - 1} aria-label={`${byId.get(id)} 아래로`} onClick={() => move(i, 1)}><Icon name="arrow-down" /></Button>

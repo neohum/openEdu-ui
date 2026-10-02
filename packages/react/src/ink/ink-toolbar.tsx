@@ -16,7 +16,8 @@ export type InkLabelKey =
   | "size"
   | "clearConfirm"
   | "tools"
-  | "actions";
+  | "actions"
+  | "export";
 
 export type InkToolbarProps = {
   label?: string;
@@ -32,6 +33,7 @@ export type InkToolbarProps = {
   onUndo(): void;
   onRedo(): void;
   onClear(): void;
+  onExport?: () => void;
   labels?: Partial<Record<InkLabelKey, string>>;
 };
 
@@ -47,6 +49,7 @@ const DEFAULT_LABELS: Record<InkLabelKey, string> = {
   clearConfirm: "정말 지울까요?",
   tools: "도구",
   actions: "작업",
+  export: "내보내기",
 };
 
 const TOOLS: { id: InkToolId; icon: string }[] = [
@@ -106,6 +109,7 @@ export function InkToolbar({
   onUndo,
   onRedo,
   onClear,
+  onExport,
   labels: labelOverrides,
 }: InkToolbarProps) {
   const t = { ...DEFAULT_LABELS, ...labelOverrides };
@@ -174,6 +178,7 @@ export function InkToolbar({
       <div role="group" aria-label={t.actions} className="oe-ink__group">
         <IconButton icon="arrow-u-up-left" label={t.undo} disabled={!canUndo} onClick={onUndo} />
         <IconButton icon="arrow-u-up-right" label={t.redo} disabled={!canRedo} onClick={onRedo} />
+        {onExport ? <IconButton icon="download-simple" label={t.export} onClick={onExport} /> : null}
         {confirming ? (
           <Button variant="danger" className="oe-ink__clear" onClick={pressClear}>
             <Icon name="trash" />

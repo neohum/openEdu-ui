@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
-import { AdaptiveDock, FocusCurtain, RadialMenu, SplitBoard, openRatioFromPointer, radialPositions } from "../src/index.ts";
+import { AdaptiveDock, FocusCurtain, RadialMenu, SplitBoard, openRatioFromPointer, radialPositions, spotlightPositionFromPointer } from "../src/index.ts";
 
 const viewport = { width: 1920, height: 1080 };
 const dockSize = { width: 480, height: 96 };
@@ -76,6 +76,120 @@ describe("FocusCurtain", () => {
     await userEvent.keyboard("{End}");
     expect(handle).toHaveAttribute("aria-valuenow", "100");
     await userEvent.keyboard("{Home}");
+    expect(handle).toHaveAttribute("aria-valuenow", "0");
+  });
+
+  it("maps pointer position to spotlight coordinates", () => {
+    const rect = { left: 100, top: 50, width: 400, height: 200 };
+    expect(spotlightPositionFromPointer({ x: 200, y: 100 }, rect)).toEqual({ x: 0.25, y: 0.25 });
+    expect(spotlightPositionFromPointer({ x: 300, y: 150 }, rect)).toEqual({ x: 0.5, y: 0.5 });
+    expect(spotlightPositionFromPointer({ x: 0, y: 0 }, rect)).toEqual({ x: 0, y: 0 });
+    expect(spotlightPositionFromPointer({ x: 999, y: 999 }, rect)).toEqual({ x: 1, y: 1 });
+  });
+
+  it("renders spotlight mode with circle/rect shapes and custom radius", () => {
+    const { container, rerender } = render(
+      <FocusCurtain mode="spotlight" label="스포트라이트" spotlightRadius={120} spotlightShape="circle">
+        강조할 본문
+      </FocusCurtain>
+    );
+    const host = container.firstElementChild as HTMLElement;
+    expect(host).toHaveAttribute("data-mode", "spotlight");
+    expect(host).toHaveAttribute("data-shape", "circle");
+    expect(host.style.getPropertyValue("--oe-spotlight-radius")).toBe("120px");
+    const handle = screen.getByRole("slider", { name: "스포트라이트" });
+    expect(handle).toBeInTheDocument();
+    expect(handle).toHaveClass("oe-curtain__spotlight");
+
+    rerender(
+      <FocusCurtain mode="spotlight" label="스포트라이트" spotlightShape="rect">
+        강조할 본문
+      </FocusCurtain>
+    );
+    expect(host).toHaveAttribute("data-shape", "rect");
+  });
+
+  it("moves spotlight position by pointer dragging", () => {
+    const onSpotlightPositionChange = vi.fn();
+    const { container } = render(
+      <FocusCurtain mode="spotlight" label="스포트라이트" onSpotlightPositionChange={onSpotlightPositionChange}>
+        정답
+      </FocusCurtain>
+    );
+    const host = container.firstElementChild as HTMLElement;
+    host.getBoundingClientRect = () => ({ left: 0, top: 0, width: 400, height: 200 }) as DOMRect;
+    const handle = screen.getByRole("slider", { name: "스포트라이트" });
+
+    fireEvent.pointerDown(handle, { pointerId: 1 });
+    fireEvent.pointerMove(handle, { clientX: 100, clientY: 50 });
+    expect(onSpotlightPositionChange).toHaveBeenLastCalledWith({ x: 0.25, y: 0.25 });
+    expect(handle).toHaveAttribute("data-spotlight-x", "25");
+    expect(handle).toHaveAttribute("data-spotlight-y", "25");
+
+    fireEvent.pointerUp(handle);
+    fireEvent.pointerMove(handle, { clientX: 200, clientY: 100 });
+    expect(onSpotlightPositionChange).toHaveBeenCalledTimes(1);
+  });
+
+  it("moves spotlight position by clicking the backdrop overlay", () => {
+    const onSpotlightPositionChange = vi.fn();
+    const { container } = render(
+      <FocusCurtain mode="spotlight" label="스포트라이트" onSpotlightPositionChange={onSpotlightPositionChange}>
+        정답
+      </FocusCurtain>
+    );
+    const host = container.firstElementChild as HTMLElement;
+    host.getBoundingClientRect = () => ({ left: 0, top: 0, width: 400, height: 200 }) as DOMRect;
+    const backdrop = container.querySelector(".oe-curtain__backdrop") as HTMLElement;
+    expect(backdrop).toBeInTheDocument();
+
+    fireEvent.pointerDown(backdrop, { pointerId: 1, clientX: 300, clientY: 100 });
+    expect(onSpotlightPositionChange).toHaveBeenLastCalledWith({ x: 0.75, y: 0.5 });
+  });
+
+  it("operates spotlight with arrow keys, Home and End", async () => {
+    const onSpotlightPositionChange = vi.fn();
+    render(
+      <FocusCurtain
+        mode="spotlight"
+        label="스포트라이트"
+        defaultSpotlightPosition={{ x: 0.5, y: 0.5 }}
+        onSpotlightPositionChange={onSpotlightPositionChange}
+      >
+        정답
+      </FocusCurtain>
+    );
+    const handle = screen.getByRole("slider", { name: "스포트라이트" });
+    handle.focus();
+
+    await userEvent.keyboard("{ArrowRight}");
+    expect(handle).toHaveAttribute("data-spotlight-x", "60");
+    expect(handle).toHaveAttribute("data-spotlight-y", "50");
+    expect(handle).toHaveAttribute("aria-valuenow", "60");
+    expect(onSpotlightPositionChange).toHaveBeenLastCalledWith({ x: 0.6, y: 0.5 });
+
+    await userEvent.keyboard("{ArrowDown}");
+    expect(handle).toHaveAttribute("data-spotlight-x", "60");
+    expect(handle).toHaveAttribute("data-spotlight-y", "60");
+    expect(handle).toHaveAttribute("aria-valuenow", "60");
+    expect(onSpotlightPositionChange).toHaveBeenLastCalledWith({ x: 0.6, y: 0.6 });
+
+    await userEvent.keyboard("{ArrowLeft}{ArrowLeft}");
+    expect(handle).toHaveAttribute("data-spotlight-x", "40");
+    expect(handle).toHaveAttribute("aria-valuenow", "40");
+
+    await userEvent.keyboard("{ArrowUp}{ArrowUp}");
+    expect(handle).toHaveAttribute("data-spotlight-y", "40");
+    expect(handle).toHaveAttribute("aria-valuenow", "40");
+
+    await userEvent.keyboard("{End}");
+    expect(handle).toHaveAttribute("data-spotlight-x", "100");
+    expect(handle).toHaveAttribute("data-spotlight-y", "100");
+    expect(handle).toHaveAttribute("aria-valuenow", "100");
+
+    await userEvent.keyboard("{Home}");
+    expect(handle).toHaveAttribute("data-spotlight-x", "0");
+    expect(handle).toHaveAttribute("data-spotlight-y", "0");
     expect(handle).toHaveAttribute("aria-valuenow", "0");
   });
 });

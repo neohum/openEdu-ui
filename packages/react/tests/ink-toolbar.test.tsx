@@ -139,6 +139,28 @@ describe("InkToolbar", () => {
     expect(screen.getByRole("radio", { name: "Width 8" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Clear all" })).toBeInTheDocument();
   });
+
+  it("does not render export button when onExport is omitted", () => {
+    render(<InkToolbar {...base()} />);
+    expect(screen.queryByRole("button", { name: "내보내기" })).toBeNull();
+  });
+
+  it("renders export button with default label and fires onExport on click", async () => {
+    const onExport = vi.fn();
+    render(<InkToolbar {...base({ onExport })} />);
+    const btn = screen.getByRole("button", { name: "내보내기" });
+    expect(btn).toBeInTheDocument();
+    expect(btn.querySelector(".ph-download-simple")).toBeInTheDocument();
+
+    await userEvent.click(btn);
+    expect(onExport).toHaveBeenCalledTimes(1);
+  });
+
+  it("supports custom export label", () => {
+    const onExport = vi.fn();
+    render(<InkToolbar {...base({ onExport, labels: { export: "저장하기" } })} />);
+    expect(screen.getByRole("button", { name: "저장하기" })).toBeInTheDocument();
+  });
 });
 
 describe("InkToolbar clear confirmation", () => {
@@ -187,6 +209,11 @@ describe("InkToolbar accessibility (axe)", () => {
       </AdaptiveDock>,
     );
     expect(screen.getByRole("toolbar", { name: "판서 도구" })).toBeInTheDocument();
+    expect(await runAxe(container)).toEqual([]);
+  });
+
+  it("has no violations when onExport is provided", async () => {
+    const { container } = render(<InkToolbar {...base({ onExport: vi.fn() })} />);
     expect(await runAxe(container)).toEqual([]);
   });
 });

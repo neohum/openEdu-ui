@@ -55,6 +55,62 @@ describe("ItemRenderer — one UI per question type", () => {
     expect(rows[0]).toContain("씨앗을 심는다");
   });
 
+  it("ordering: supports drag and drop reordering with visual feedback", () => {
+    const onChange = vi.fn();
+    render(<ItemRenderer item={byType("ordering")} onChange={onChange} />);
+    const rows = screen.getAllByRole("listitem");
+    expect(rows).toHaveLength(3);
+
+    for (const row of rows) {
+      expect(row).toHaveAttribute("draggable", "true");
+      const handle = row.querySelector(".oe-ordering__handle");
+      expect(handle).toBeInTheDocument();
+      expect(handle?.querySelector(".ph-dots-six-vertical")).toBeInTheDocument();
+    }
+
+    fireEvent.dragStart(rows[0]!);
+    expect(rows[0]).toHaveClass("oe-ordering__row--dragging");
+    expect(rows[0]).toHaveAttribute("data-dragging", "true");
+
+    fireEvent.dragOver(rows[2]!);
+    fireEvent.drop(rows[2]!);
+
+    expect(onChange).toHaveBeenLastCalledWith(["d", "f", "s"]);
+    expect(rows[0]).not.toHaveClass("oe-ordering__row--dragging");
+    expect(rows[0]).not.toHaveAttribute("data-dragging");
+  });
+
+  it("ordering: drag end cancels dragging state without change", () => {
+    const onChange = vi.fn();
+    render(<ItemRenderer item={byType("ordering")} onChange={onChange} />);
+    const rows = screen.getAllByRole("listitem");
+
+    fireEvent.dragStart(rows[1]!);
+    expect(rows[1]).toHaveClass("oe-ordering__row--dragging");
+
+    fireEvent.dragEnd(rows[1]!);
+    expect(rows[1]).not.toHaveClass("oe-ordering__row--dragging");
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("ordering: readOnly disables drag and buttons", () => {
+    const onChange = vi.fn();
+    render(<ItemRenderer item={byType("ordering")} readOnly onChange={onChange} />);
+    const rows = screen.getAllByRole("listitem");
+    for (const row of rows) {
+      expect(row).toHaveAttribute("draggable", "false");
+    }
+    const buttons = screen.getAllByRole("button");
+    for (const btn of buttons) {
+      expect(btn).toBeDisabled();
+    }
+
+    fireEvent.dragStart(rows[0]!);
+    expect(rows[0]).not.toHaveClass("oe-ordering__row--dragging");
+    fireEvent.drop(rows[2]!);
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
   it("hotspot: toggles spots and exposes pressed state", async () => {
     const onChange = vi.fn();
     render(<ItemRenderer item={byType("hotspot")} onChange={onChange} />);

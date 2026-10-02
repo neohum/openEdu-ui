@@ -106,6 +106,8 @@ export type InkBoardProps = {
   defaultSize?: number;
   sizes?: number[];
   toolbarLabels?: Partial<Record<InkLabelKey, string>>;
+  onExport?: (blob: Blob) => void;
+  exportFilename?: string;
   className?: string;
   style?: CSSProperties;
 };
@@ -129,6 +131,8 @@ export const InkBoard = forwardRef<InkBoardHandle, InkBoardProps>(function InkBo
     defaultSize = 4,
     sizes,
     toolbarLabels,
+    onExport,
+    exportFilename = "openedu-drawing.png",
     className = "",
     style,
   },
@@ -258,6 +262,35 @@ export const InkBoard = forwardRef<InkBoardHandle, InkBoardProps>(function InkBo
     setSize(next);
   };
 
+  const handleExport = useCallback(async () => {
+    try {
+      const blob = await engine.toBlob("image/png");
+      onExport?.(blob);
+      if (typeof window !== "undefined" && typeof document !== "undefined") {
+        const createUrl =
+          (typeof window !== "undefined" && typeof window.URL?.createObjectURL === "function" && window.URL.createObjectURL.bind(window.URL)) ||
+          (typeof URL !== "undefined" && typeof URL.createObjectURL === "function" && URL.createObjectURL.bind(URL)) ||
+          null;
+        const revokeUrl =
+          (typeof window !== "undefined" && typeof window.URL?.revokeObjectURL === "function" && window.URL.revokeObjectURL.bind(window.URL)) ||
+          (typeof URL !== "undefined" && typeof URL.revokeObjectURL === "function" && URL.revokeObjectURL.bind(URL)) ||
+          null;
+        if (createUrl) {
+          const url = createUrl(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = exportFilename;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          revokeUrl?.(url);
+        }
+      }
+    } catch {
+      // Gracefully ignore export failures (e.g. headless without canvas)
+    }
+  }, [engine, exportFilename, onExport]);
+
   const boardClasses = [
     "oe-ink-board",
     readOnly ? "oe-ink-board--readonly" : "",
@@ -287,6 +320,7 @@ export const InkBoard = forwardRef<InkBoardHandle, InkBoardProps>(function InkBo
         onUndo={() => engine.undo()}
         onRedo={() => engine.redo()}
         onClear={() => engine.clear()}
+        onExport={handleExport}
         labels={toolbarLabels}
       />
     </div>
