@@ -33,6 +33,7 @@ export function getPeriodStatus(now: Date, schedules: PeriodSchedule[] = DEFAULT
 
   for (let i = 0; i < schedules.length; i++) {
     const item = schedules[i];
+    if (!item) continue;
     const start = timeStrToMinutes(item.startTime);
     const end = timeStrToMinutes(item.endTime);
 

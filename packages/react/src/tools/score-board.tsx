@@ -19,10 +19,10 @@ export const GROUP_PALETTE = [
 ];
 
 export const DEFAULT_INITIAL_GROUPS: ScoreGroup[] = [
-  { id: "g-1", name: "1모둠", score: 0, color: GROUP_PALETTE[0] },
-  { id: "g-2", name: "2모둠", score: 0, color: GROUP_PALETTE[1] },
-  { id: "g-3", name: "3모둠", score: 0, color: GROUP_PALETTE[2] },
-  { id: "g-4", name: "4모둠", score: 0, color: GROUP_PALETTE[3] },
+  { id: "g-1", name: "1모둠", score: 0, color: GROUP_PALETTE[0] ?? "#3b82f6" },
+  { id: "g-2", name: "2모둠", score: 0, color: GROUP_PALETTE[1] ?? "#10b981" },
+  { id: "g-3", name: "3모둠", score: 0, color: GROUP_PALETTE[2] ?? "#f59e0b" },
+  { id: "g-4", name: "4모둠", score: 0, color: GROUP_PALETTE[3] ?? "#ef4444" },
 ];
 
 export interface GroupScoreBoardProps {
@@ -87,7 +87,7 @@ export function GroupScoreBoard({
   const handleAddGroup = () => {
     if (groups.length >= maxGroups) return;
     const nextIdx = groups.length;
-    const nextColor = GROUP_PALETTE[nextIdx % GROUP_PALETTE.length];
+    const nextColor = GROUP_PALETTE[nextIdx % GROUP_PALETTE.length] ?? "#3b82f6";
     const newGroup: ScoreGroup = {
       id: `g-${Date.now()}-${nextIdx + 1}`,
       name: `${nextIdx + 1}모둠`,

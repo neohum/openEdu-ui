@@ -128,9 +128,11 @@ export function RandomPicker({
     setWinner(null);
     setShowWinnerPopup(false);
 
+    if (availablePool.length === 0) return;
+
     // If 0 duration (for tests or instant pick)
     if (animationDuration <= 0) {
-      const chosen = availablePool[Math.floor(Math.random() * availablePool.length)];
+      const chosen = availablePool[Math.floor(Math.random() * availablePool.length)] ?? availablePool[0] ?? "";
       setDisplayCandidate(chosen);
       setWinner(chosen);
       setIsPicking(false);
@@ -147,11 +149,12 @@ export function RandomPicker({
     const intervalId = setInterval(() => {
       elapsed += intervalStep;
       const randomIdx = Math.floor(Math.random() * availablePool.length);
-      setDisplayCandidate(availablePool[randomIdx]);
+      const tempCandidate = availablePool[randomIdx] ?? "";
+      setDisplayCandidate(tempCandidate);
 
       if (elapsed >= animationDuration) {
         clearInterval(intervalId);
-        const finalChosen = availablePool[Math.floor(Math.random() * availablePool.length)];
+        const finalChosen = availablePool[Math.floor(Math.random() * availablePool.length)] ?? tempCandidate;
         setDisplayCandidate(finalChosen);
         setWinner(finalChosen);
         setIsPicking(false);

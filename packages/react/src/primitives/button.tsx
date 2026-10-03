@@ -1,17 +1,28 @@
 import type { ButtonHTMLAttributes } from "react";
 import { Icon } from "./icon.tsx";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "outline";
 export type ButtonSize = "sm" | "md";
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  pill?: boolean;
   /** Replaces the label with a spinner while keeping the button width stable. */
   loading?: boolean;
 };
 
-export function Button({ variant = "primary", size = "md", loading = false, disabled, children, className, type = "button", ...rest }: ButtonProps) {
+export function Button({
+  variant = "primary",
+  size = "md",
+  pill = false,
+  loading = false,
+  disabled,
+  children,
+  className,
+  type = "button",
+  ...rest
+}: ButtonProps) {
   return (
     <button
       {...rest}
@@ -19,6 +30,7 @@ export function Button({ variant = "primary", size = "md", loading = false, disa
       className={["oe-button", className].filter(Boolean).join(" ")}
       data-variant={variant}
       data-size={size}
+      data-pill={pill || undefined}
       data-loading={loading || undefined}
       aria-busy={loading || undefined}
       disabled={disabled || loading}

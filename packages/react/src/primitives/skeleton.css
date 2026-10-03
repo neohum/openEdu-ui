@@ -1,0 +1,20 @@
+@layer components {
+  .oe-skeleton {
+    background: var(--color-surface-sunken);
+    border-radius: var(--radius-sm);
+    animation: oe-skeleton-pulse 1.8s ease-in-out infinite;
+  }
+
+  .oe-skeleton--circle {
+    border-radius: var(--radius-full);
+  }
+
+  @keyframes oe-skeleton-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+}
