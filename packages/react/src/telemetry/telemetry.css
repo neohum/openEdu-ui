@@ -1,0 +1,244 @@
+/* Telemetry and Behavioral Observation Styling */
+
+.oe-state-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.oe-state-dot--sm {
+  width: 6px;
+  height: 6px;
+}
+
+.oe-state-dot--md {
+  width: 10px;
+  height: 10px;
+}
+
+.oe-state-dot--lg {
+  width: 14px;
+  height: 14px;
+}
+
+.oe-state-dot--pulse {
+  animation: oe-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes oe-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}
+
+/* Behavioral State Specific Tokens */
+.oe-telemetry-state--focus {
+  background-color: var(--color-edu-state-focus, #1d4ed8);
+  color: var(--color-edu-focus-fg, #ffffff);
+}
+
+.oe-telemetry-state--struggle {
+  background-color: var(--color-edu-state-struggle, #b45309);
+  color: var(--color-edu-scaffold-fg, #ffffff);
+}
+
+.oe-telemetry-state--idle {
+  background-color: var(--color-edu-state-idle, #475569);
+  color: #ffffff;
+}
+
+.oe-telemetry-state--mastery {
+  background-color: var(--color-edu-state-mastery, #047857);
+  color: var(--color-edu-mastery-fg, #ffffff);
+}
+
+.oe-telemetry-state--overload {
+  background-color: var(--color-edu-state-overload, #b91c1c);
+  color: var(--color-edu-feedback-fg, #ffffff);
+}
+
+.oe-telemetry-state--explore {
+  background-color: var(--color-edu-state-explore, #6d28d9);
+  color: var(--color-edu-explore-fg, #ffffff);
+}
+
+/* Observation Badge */
+.oe-observation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: 2px 10px;
+  border-radius: var(--radius-full, 9999px);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 600;
+  line-height: 1.4;
+  border: 1px solid transparent;
+}
+
+.oe-observation-badge.oe-telemetry-state--focus {
+  background-color: var(--color-edu-focus-surface, #eff6ff);
+  color: var(--color-edu-focus, #1d4ed8);
+  border-color: rgba(29, 78, 216, 0.2);
+}
+.oe-observation-badge.oe-telemetry-state--focus .oe-observation-badge__dot {
+  background-color: var(--color-edu-focus, #1d4ed8);
+}
+
+.oe-observation-badge.oe-telemetry-state--struggle {
+  background-color: var(--color-edu-scaffold-surface, #fffbeb);
+  color: var(--color-edu-scaffold, #b45309);
+  border-color: rgba(180, 83, 9, 0.2);
+}
+.oe-observation-badge.oe-telemetry-state--struggle .oe-observation-badge__dot {
+  background-color: var(--color-edu-scaffold, #b45309);
+}
+
+.oe-observation-badge.oe-telemetry-state--idle {
+  background-color: var(--color-surface-sunken, #f1f5f9);
+  color: var(--color-fg-muted, #475569);
+  border-color: var(--color-border, #e2e8f0);
+}
+.oe-observation-badge.oe-telemetry-state--idle .oe-observation-badge__dot {
+  background-color: #64748b;
+}
+
+.oe-observation-badge.oe-telemetry-state--mastery {
+  background-color: var(--color-edu-mastery-surface, #ecfdf5);
+  color: var(--color-edu-mastery, #047857);
+  border-color: rgba(4, 120, 87, 0.2);
+}
+.oe-observation-badge.oe-telemetry-state--mastery .oe-observation-badge__dot {
+  background-color: var(--color-edu-mastery, #047857);
+}
+
+.oe-observation-badge.oe-telemetry-state--overload {
+  background-color: var(--color-edu-feedback-surface, #fef2f2);
+  color: var(--color-edu-feedback, #b91c1c);
+  border-color: rgba(185, 28, 28, 0.2);
+}
+.oe-observation-badge.oe-telemetry-state--overload .oe-observation-badge__dot {
+  background-color: var(--color-edu-feedback, #b91c1c);
+}
+
+.oe-observation-badge.oe-telemetry-state--explore {
+  background-color: var(--color-edu-explore-surface, #f5f3ff);
+  color: var(--color-edu-explore, #6d28d9);
+  border-color: rgba(109, 40, 217, 0.2);
+}
+.oe-observation-badge.oe-telemetry-state--explore .oe-observation-badge__dot {
+  background-color: var(--color-edu-explore, #6d28d9);
+}
+
+.oe-observation-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.oe-observation-badge__desc {
+  color: var(--color-fg-muted, #475569);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* Observer Heatmap Strip */
+.oe-heatmap-strip-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  width: 100%;
+}
+
+.oe-heatmap-strip {
+  display: flex;
+  height: 12px;
+  width: 100%;
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  background-color: var(--color-surface-sunken, #f1f5f9);
+}
+
+.oe-heatmap-segment {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.oe-heatmap-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+.oe-heatmap-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.oe-heatmap-legend-name {
+  color: var(--color-fg-muted, #475569);
+}
+
+.oe-heatmap-legend-count {
+  font-weight: 600;
+  color: var(--color-fg, #0f172a);
+}
+
+/* Event Log Table */
+.oe-telemetry-log-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-md, 10px);
+}
+
+.oe-telemetry-log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-xs, 0.75rem);
+  text-align: left;
+}
+
+.oe-telemetry-log-table th {
+  background-color: var(--color-surface-sunken, #f1f5f9);
+  padding: 8px 12px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  color: var(--color-fg-muted, #475569);
+}
+
+.oe-telemetry-log-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  color: var(--color-fg, #0f172a);
+}
+
+.oe-telemetry-anon-code {
+  font-family: var(--font-mono, monospace);
+  background-color: var(--color-surface-sunken, #f1f5f9);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.oe-telemetry-action-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  background-color: var(--color-surface-sunken, #f1f5f9);
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+}
+
+.oe-telemetry-log-empty {
+  text-align: center;
+  padding: 24px;
+  color: var(--color-fg-muted, #475569);
+}

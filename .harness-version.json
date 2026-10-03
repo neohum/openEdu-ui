@@ -1,12 +1,12 @@
 {
   "_comment": "create-agent-harness provenance - harness-owned; refreshed on scaffold and --update",
   "schema": 1,
-  "version": "0.4.37",
+  "version": "0.4.40",
   "projectName": "openEdu-ui",
   "minNode": ">=22.18",
   "mode": "autonomous",
-  "commit": "3354639c8bcd1c8d63ce7816e24a9eff4c2a0c76",
+  "commit": "67aa0e72e6490e2c20a7cd869b627c87debe40d0",
   "branch": "main",
   "remoteUrl": "https://github.com/neohum/create-agent-harness.git",
-  "stampedAt": "2026-10-02T01:37:09.152Z"
+  "stampedAt": "2026-10-03T09:39:03.862Z"
 }

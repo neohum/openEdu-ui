@@ -1,0 +1,44 @@
+@layer components {
+  .oe-collapsible {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .oe-collapsible-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    color: var(--color-accent);
+    padding: var(--space-1) 0;
+  }
+
+  .oe-collapsible-trigger:hover {
+    text-decoration: underline;
+  }
+
+  .oe-collapsible-trigger:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .oe-collapsible-content {
+    margin-top: var(--space-2);
+    animation: oe-fade-in var(--motion-fast) var(--motion-ease);
+  }
+
+  @keyframes oe-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

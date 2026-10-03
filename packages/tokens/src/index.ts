@@ -1,1 +1,1 @@
-export {};
+export * from "./educational-colors.ts";

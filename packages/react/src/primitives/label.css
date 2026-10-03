@@ -1,0 +1,22 @@
+@layer components {
+  .oe-label-primitive {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-fg);
+    user-select: none;
+  }
+
+  .oe-label-required {
+    color: var(--color-danger);
+    font-weight: 700;
+  }
+
+  .oe-label-optional {
+    color: var(--color-fg-muted);
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+  }
+}
