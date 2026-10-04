@@ -275,7 +275,7 @@ export function App() {
   const [highlights, setHighlights] = useState<{ start: number; end: number }[]>([]);
   const [count, setCount] = useState(7);
 
-  // Comwit UI showcase states
+  // openEdu-ui UI Suite showcase states
   const [segValue, setSegValue] = useState("week");
   const [chipSelected, setChipSelected] = useState(true);
   const [checked, setChecked] = useState(true);
@@ -392,10 +392,10 @@ export function App() {
               </Grid>
             </Section>
 
-            {/* 3. Comwit UI Complete Web Component Suite */}
+            {/* 3. openEdu-ui UI Suite Complete Web Component Suite */}
             <Section
-              title="3. Comwit UI 전체 컴포넌트 스위트"
-              subtitle="https://library.comwit.io/ui의 8개 범주 48개 컴포넌트 완벽 구현 (Mobile, Glass, Pickers, Selection, Forms, Notifications, Chat)"
+              title="3. openEdu-ui UI Suite 전체 컴포넌트 스위트"
+              subtitle="openEdu-ui의 8개 범주 48개 컴포넌트 완벽 구현 (Mobile, Glass, Pickers, Selection, Forms, Notifications, Chat)"
             >
               {/* 3.1 Selection & Notifications */}
               <Grid minColumn="20rem">
