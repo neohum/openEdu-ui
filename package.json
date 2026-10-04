@@ -2,6 +2,7 @@
   "name": "openedu-ui",
   "private": true,
   "type": "module",
+  "homepage": "https://edulinker.kr/openedu-ui",
   "packageManager": "pnpm@8.15.0",
   "scripts": {
     "typecheck": "pnpm -r typecheck && tsc -p .",
