@@ -14,3 +14,4 @@ export * from "./cut-line.tsx";
 export * from "./score-badge.tsx";
 export * from "./check-score-grid.tsx";
 export * from "./omr-sheet-card.tsx";
+export * from "./print-components.tsx";
