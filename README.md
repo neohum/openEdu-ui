@@ -1,12 +1,21 @@
 # openEdu-ui
 
+[![Live Showcase](https://img.shields.io/badge/Demo%20%26%20Showcase-edulinker.kr%2Fopenedu--ui-FEE500?style=for-the-badge&logo=googlechrome&logoColor=191919)](https://edulinker.kr/openedu-ui)
+[![Docs](https://img.shields.io/badge/Docs-edulinker.kr%2Fdocs-000000?style=for-the-badge&logo=bookstack&logoColor=white)](https://edulinker.kr/docs/openedu-ui/overview)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
+[![Status: v0.1.0](https://img.shields.io/badge/Release-v0.1.0-emerald?style=for-the-badge)](./ROADMAP.md)
+
 전자칠판 · 웹 · 앱 · 인터랙티브 콘텐츠 · 종이 학습지까지, 교육 자료를 위한 디자인 시스템입니다.
 
 하나의 **디자인 토큰**과 하나의 **문항 스키마**를 기준으로, 표면(`board` / `desktop` / `mobile` / `print`)만 고르면 글자 크기·간격·터치 타겟이 자동으로 맞춰집니다.
 
-> 🌐 **공식 문서 및 라이브 컴포넌트 뷰어:**
-> openEdu-ui의 모든 컴포넌트(전자칠판, 가상 교구, 교육학적 색채, 무기명 행동 텔레메트리, Comwit UI 48종, 0.5pt 얇은 선 종이 학습지 등)를 브라우저에서 직접 조작하고 코드를 확인할 수 있습니다:
-> 👉 **[https://edulinker.kr/docs/openedu-ui/overview](https://edulinker.kr/docs/openedu-ui/overview)**
+> 🌟 **[https://ui.shadcn.com](https://ui.shadcn.com) 스타일의 공식 컴포넌트 쇼케이스 & 라이브 뷰어:**
+> 
+> openEdu-ui의 모든 컴포넌트(전자칠판 판서 엔진, 스포트라이트 가림막, 수학 가상 교구, 교육학적 색채 시스템, 무기명 행동 텔레메트리, Comwit UI 48종, 0.5pt 얇은 선 종이 학습지 등)를 실시간 테마 커스터마이저 및 Preview/Code 뷰어로 직접 조작해 보세요!
+>
+> 🔗 **[https://edulinker.kr/openedu-ui](https://edulinker.kr/openedu-ui)**
+> 
+> *(공식 개발지원센터 문서 포털: [https://edulinker.kr/docs/openedu-ui/overview](https://edulinker.kr/docs/openedu-ui/overview))*
 
 > 상태: **v0.1.0** (첫 정식 릴리스). 디자인 토큰, 팜 리젝션 포인터 라우터, QTI 3.0 부분집합 6대 문항 스키마, perfect-freehand 독립 판서 엔진, 리액트 컴포넌트(전자칠판·문제지·가상 교구) 및 A4 인쇄 PDF 생성기까지 전 계층의 구현과 검증이 완료되었습니다. 구현 계획은 [ROADMAP.md](./ROADMAP.md), 디자인 규칙은 [DESIGN.md](./DESIGN.md)를 참고하세요.
 
@@ -33,15 +42,16 @@ React 19 + TypeScript + 순수 CSS, pnpm 워크스페이스(`@openedu/*`). 토�
 | `@openedu/react` | 기본 UI·전자칠판(판서보드, 가림막, 분할보드, 어댑티브도크)·문제지(순서정렬, 지문고정, 형광펜)·가상교구(수모형, 분수, 수직선) 컴포넌트 |
 | `@openedu/print` | A4 인쇄 학습지(학생용/교사용) 렌더러 및 Headless Chromium 기반 PDF 생성기 |
 
-문서: [공식 온라인 문서 포털](https://edulinker.kr/docs/openedu-ui/overview) · [사용 가이드](docs/design-system/guide.md) · [컴포넌트 카탈로그](docs/design-system/components.md) · [설계 결정(ADR)](docs/adr/0029-design-system-architecture.md) · [로드맵](ROADMAP.md)
+문서: [공식 컴포넌트 쇼케이스](https://edulinker.kr/openedu-ui) · [공식 온라인 문서 포털](https://edulinker.kr/docs/openedu-ui/overview) · [사용 가이드](docs/design-system/guide.md) · [컴포넌트 카탈로그](docs/design-system/components.md) · [설계 결정(ADR)](docs/adr/0029-design-system-architecture.md) · [로드맵](ROADMAP.md)
 
 v0.1.0 릴리스 준비가 완료되었으며, `pnpm pack:check`로 배포 tarball을 확인할 수 있습니다.
 
-## 공식 문서 및 대화형 컴포넌트 뷰어
+## 공식 컴포넌트 쇼케이스 및 대화형 뷰어
 
-openEdu-ui의 전체 컴포넌트 스펙, 실시간 조작 샌드박스, 교육학적 이론 배경 및 복사 가능한 코드는 공식 개발지원센터에서 직접 확인하고 조작할 수 있습니다:
+openEdu-ui의 전체 컴포넌트 스펙, 실시간 조작 샌드박스, 교육학적 이론 배경 및 복사 가능한 코드는 shadcn/ui 스타일의 컴포넌트 쇼케이스와 공식 개발지원센터에서 직접 확인하고 조작할 수 있습니다:
 
-🔗 **[https://edulinker.kr/docs/openedu-ui/overview](https://edulinker.kr/docs/openedu-ui/overview)**
+- 🌟 **컴포넌트 쇼케이스 & 라이브 카탈로그 (shadcn/ui style):** **[https://edulinker.kr/openedu-ui](https://edulinker.kr/openedu-ui)**
+- 📖 **공식 개발지원센터 문서 포털:** **[https://edulinker.kr/docs/openedu-ui/overview](https://edulinker.kr/docs/openedu-ui/overview)**
 
 - **교육학적 색채 시스템 (EducationalColors):** 인지부하 이론, 감정 필터, ZPD 비계, 얼렌 증후군 시각 피로 완화 기반 7대 인지 토큰
 - **학생 행동 관찰 & 무기명 텔레메트리 (EducationalTelemetry):** Zero-PII 무기명 세션 토큰, 체류 시간(dwell), 망설임 지연(hesitation), 재시도 루프, 실시간 관찰 히트맵
