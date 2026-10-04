@@ -34,7 +34,11 @@ export function FractionBar({ denominator, value: valueProp, defaultValue = 0, o
           />
         ))}
       </div>
-      <output className="oe-fraction__readout" aria-live="polite">{value}/{denominator}</output>
+      <output className="oe-fraction__readout" aria-live="polite" aria-label={`${denominator}분의 ${value}`}>
+        <span className="oe-fraction__num">{value}</span>
+        <span className="oe-fraction__slash">/</span>
+        <span className="oe-fraction__den">{denominator}</span>
+      </output>
       <div className="oe-fraction__controls">
         <Button variant="secondary" size="sm" aria-label="조각 추가" disabled={value >= denominator} onClick={() => set(value + 1)}><Icon name="plus" /></Button>
         <Button variant="secondary" size="sm" aria-label="조각 제거" disabled={value <= 0} onClick={() => set(value - 1)}><Icon name="minus" /></Button>
