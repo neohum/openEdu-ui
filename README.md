@@ -11,7 +11,7 @@
 
 > 🌟 **[https://ui.shadcn.com](https://ui.shadcn.com) 스타일의 공식 컴포넌트 쇼케이스 & 라이브 뷰어:**
 > 
-> openEdu-ui의 모든 컴포넌트(전자칠판 판서 엔진, 스포트라이트 가림막, 수학 가상 교구, 교육학적 색채 시스템, 무기명 행동 텔레메트리, Comwit UI 48종, 0.5pt 얇은 선 종이 학습지 등)를 실시간 테마 커스터마이저 및 Preview/Code 뷰어로 직접 조작해 보세요!
+> openEdu-ui의 모든 컴포넌트(전자칠판 판서 엔진, 스포트라이트 가림막, 수학 가상 교구, 교육학적 색채 시스템, 무기명 행동 텔레메트리, openEdu-ui UI Suite 48종, 0.5pt 얇은 선 종이 학습지 등)를 실시간 테마 커스터마이저 및 Preview/Code 뷰어로 직접 조작해 보세요!
 >
 > 🔗 **[https://edulinker.kr/openedu-ui](https://edulinker.kr/openedu-ui)**
 > 
@@ -55,7 +55,7 @@ openEdu-ui의 전체 컴포넌트 스펙, 실시간 조작 샌드박스, 교육�
 
 - **교육학적 색채 시스템 (EducationalColors):** 인지부하 이론, 감정 필터, ZPD 비계, 얼렌 증후군 시각 피로 완화 기반 7대 인지 토큰
 - **학생 행동 관찰 & 무기명 텔레메트리 (EducationalTelemetry):** Zero-PII 무기명 세션 토큰, 체류 시간(dwell), 망설임 지연(hesitation), 재시도 루프, 실시간 관찰 히트맵
-- **Comwit UI 컴포넌트 슈트 (ComwitUISuite):** Basics, Glass, Notifications, Selection, Pickers, Forms & Data, Mobile App, Chat 8대 그룹 48종 전체 컴포넌트
+- **openEdu-ui UI Suite 컴포넌트 슈트 (OpenEduUiSuite):** Basics, Glass, Notifications, Selection, Pickers, Forms & Data, Mobile App, Chat 8대 그룹 48종 전체 컴포넌트
 - **종이 학습지 0.5pt 얇은 선 블랙 UI (ThinBlackPaper):** 0.5pt/0.75pt 초극세사 헤어라인 흑백 시험지, OMR 버블, 줄노트, 좌표평면, 교사 루브릭 채점표
 - **전자칠판 & 가상 교구:** InkBoard(벡터 판서), FocusCurtain(가림막/스포트라이트), SplitBoard(분할 칠판), BaseTenBlocks(수모형), FractionStrips(분수띠), NumberLine(수직선)
 
