@@ -1,0 +1,118 @@
+@layer components {
+  /* Math Fraction */
+  .oe-math-fraction {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    font-family: var(--font-serif, "Times New Roman", Cambria, serif);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 var(--space-0-5, 2px);
+    user-select: none;
+  }
+
+  .oe-math-fraction__visual {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .oe-math-fraction__whole {
+    margin-right: var(--space-1, 4px);
+    font-weight: 700;
+  }
+
+  .oe-math-fraction__stack {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .oe-math-fraction__bar {
+    width: 100%;
+    border-bottom: 2px solid currentColor;
+    margin: 1px 0;
+  }
+
+  .oe-math-fraction--xs { font-size: 0.75rem; }
+  .oe-math-fraction--xs .oe-math-fraction__num,
+  .oe-math-fraction--xs .oe-math-fraction__den { font-size: 0.65rem; padding: 1px; }
+  .oe-math-fraction--xs .oe-math-fraction__bar { border-bottom-width: 1px; }
+
+  .oe-math-fraction--sm { font-size: 0.875rem; }
+  .oe-math-fraction--sm .oe-math-fraction__num,
+  .oe-math-fraction--sm .oe-math-fraction__den { font-size: 0.75rem; padding: 1px; }
+  .oe-math-fraction--sm .oe-math-fraction__bar { border-bottom-width: 1.5px; }
+
+  .oe-math-fraction--md { font-size: 1rem; }
+  .oe-math-fraction--md .oe-math-fraction__num,
+  .oe-math-fraction--md .oe-math-fraction__den { font-size: 0.85rem; padding: 1.5px; }
+
+  .oe-math-fraction--lg { font-size: 1.25rem; }
+  .oe-math-fraction--lg .oe-math-fraction__num,
+  .oe-math-fraction--lg .oe-math-fraction__den { font-size: 1rem; padding: 2px; }
+
+  .oe-math-fraction--xl { font-size: 1.5rem; }
+  .oe-math-fraction--xl .oe-math-fraction__num,
+  .oe-math-fraction--xl .oe-math-fraction__den { font-size: 1.2rem; padding: 2.5px; }
+  .oe-math-fraction--xl .oe-math-fraction__bar { border-bottom-width: 2.5px; }
+
+  /* Math Formula */
+  .oe-math-formula {
+    font-family: var(--font-serif, "Times New Roman", Cambria, serif);
+    font-weight: 700;
+    line-height: 1;
+    align-items: center;
+    vertical-align: middle;
+    user-select: none;
+  }
+
+  .oe-math-formula--inline {
+    display: inline-flex;
+  }
+
+  .oe-math-formula--block {
+    display: flex;
+  }
+
+  .oe-math-formula__space {
+    display: inline-block;
+    width: 0.25em;
+  }
+
+  .oe-math-formula__op {
+    font-family: var(--font-sans, system-ui, sans-serif);
+    font-weight: 400;
+    margin: 0 0.2em;
+  }
+
+  .oe-math-formula__eq {
+    margin: 0 0.35em;
+  }
+
+  .oe-math-formula__placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.1em 0.3em;
+    font-family: var(--font-sans, system-ui, sans-serif);
+    font-weight: 700;
+    color: var(--color-accent, #eab308);
+    background: var(--color-surface, #fff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-sm, 4px);
+    margin: 0 0.2em;
+  }
+
+  .oe-math-formula__var-wrap {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .oe-math-formula__var {
+    font-style: italic;
+    font-weight: 600;
+    padding: 0 0.05em;
+  }
+}

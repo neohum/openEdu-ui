@@ -14,7 +14,35 @@
   .oe-fraction__part:last-child { border-right: 0; }
   .oe-fraction__part[aria-pressed="true"] { background: var(--color-accent); }
   .oe-fraction__part:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
-  .oe-fraction__readout { font-size: var(--font-size-2xl); font-variant-numeric: tabular-nums; }
+  .oe-fraction__readout {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
+    font-family: var(--font-serif, "Times New Roman", Cambria, serif);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .oe-fraction__num {
+    font-size: var(--font-size-xl, 1.25rem);
+    padding-bottom: 2px;
+    border-bottom: 2px solid currentColor;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+  }
+  .oe-fraction__slash {
+    display: none;
+  }
+  .oe-fraction__den {
+    font-size: var(--font-size-xl, 1.25rem);
+    padding-top: 2px;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+  }
 
   .oe-numberline { position: relative; height: calc(var(--target-min) * 2); touch-action: none; }
   .oe-numberline__axis { position: absolute; inset: auto 0 0 0; height: var(--space-8); border-top: 2px solid var(--color-fg); }

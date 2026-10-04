@@ -64,6 +64,8 @@ import {
   InputGroup,
   ItemRenderer,
   Label,
+  MathFraction,
+  MathFormula,
   MonthPicker,
   NumberLine,
   ObserverHeatmapStrip,
@@ -646,7 +648,9 @@ export function App() {
                       points={6}
                       prompt="[서술형] 다음 두 분수의 크기를 비교하고, 그 풀이 과정을 서술하시오."
                       subQuestions={[
-                        "두 분수 3/4과 5/6를 통분하시오.",
+                        <span key="q1" className="inline-flex items-center gap-1">
+                          두 분수 <MathFraction num={3} den={4} size="sm" />과 <MathFraction num={5} den={6} size="sm" />를 통분하시오.
+                        </span>,
                         "어느 분수가 더 큰지 부등호(<, >)를 사용하여 나타내시오.",
                       ]}
                     >

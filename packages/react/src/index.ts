@@ -16,3 +16,4 @@ export * from "./forms/index.ts";
 export * from "./mobile/index.ts";
 export * from "./chat/index.ts";
 export * from "./thin-black/index.ts";
+export * from "./math/index.ts";
