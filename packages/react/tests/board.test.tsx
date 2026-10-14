@@ -3,7 +3,18 @@ import userEvent from "@testing-library/user-event";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
-import { AdaptiveDock, FocusCurtain, RadialMenu, SplitBoard, openRatioFromPointer, radialPositions, spotlightPositionFromPointer } from "../src/index.ts";
+import {
+  AdaptiveDock,
+  BOARD_BACKGROUND_PRESETS,
+  BoardCanvas,
+  BoardHeader,
+  FocusCurtain,
+  RadialMenu,
+  SplitBoard,
+  openRatioFromPointer,
+  radialPositions,
+  spotlightPositionFromPointer,
+} from "../src/index.ts";
 
 const viewport = { width: 1920, height: 1080 };
 const dockSize = { width: 480, height: 96 };
@@ -252,6 +263,60 @@ describe("SplitBoard", () => {
   });
 });
 
+describe("BoardHeader", () => {
+  it("renders 1~6 period chips, subject, unit, objective, clock and switches periods", async () => {
+    const onPeriodChange = vi.fn();
+    const fixedDate = new Date(2026, 9, 14, 10, 15, 0);
+    render(
+      <BoardHeader
+        defaultPeriod={2}
+        subject="수학"
+        unit="3. 분수의 덧셈과 뺄셈"
+        objective="분모가 같은 분수의 덧셈을 할 수 있어요"
+        initialTime={fixedDate}
+        onPeriodChange={onPeriodChange}
+      />,
+    );
+
+    expect(screen.getByTestId("board-header-subject")).toHaveTextContent("수학");
+    expect(screen.getByTestId("board-header-unit")).toHaveTextContent("3. 분수의 덧셈과 뺄셈");
+    expect(screen.getByTestId("board-header-objective")).toHaveTextContent("분모가 같은 분수의 덧셈을 할 수 있어요");
+    expect(screen.getByTestId("board-header-clock")).toHaveTextContent("10:15");
+
+    const period2Btn = screen.getByRole("button", { name: "2교시" });
+    expect(period2Btn).toHaveAttribute("aria-pressed", "true");
+
+    const period4Btn = screen.getByRole("button", { name: "4교시" });
+    await userEvent.click(period4Btn);
+    expect(onPeriodChange).toHaveBeenCalledWith(4);
+    expect(period4Btn).toHaveAttribute("aria-pressed", "true");
+  });
+});
+
+describe("BoardCanvas", () => {
+  it("renders all 6 educational background presets and switches SVG patterns", async () => {
+    const onPresetChange = vi.fn();
+    render(
+      <BoardCanvas defaultPreset="plain" onPresetChange={onPresetChange}>
+        <p>판서 본문</p>
+      </BoardCanvas>,
+    );
+
+    expect(screen.getByText("판서 본문")).toBeInTheDocument();
+    expect(screen.getByTestId("board-canvas")).toHaveAttribute("data-preset", "plain");
+
+    for (const preset of BOARD_BACKGROUND_PRESETS) {
+      const btn = screen.getByRole("button", { name: preset.label });
+      await userEvent.click(btn);
+      expect(screen.getByTestId("board-canvas")).toHaveAttribute("data-preset", preset.id);
+      if (preset.id !== "plain") {
+        expect(screen.getByTestId(`board-pattern-${preset.id}`)).toBeInTheDocument();
+      }
+    }
+    expect(onPresetChange).toHaveBeenCalledTimes(BOARD_BACKGROUND_PRESETS.length);
+  });
+});
+
 describe("board touch targets", () => {
   const read = (path: string) => readFileSync(join(import.meta.dirname, "../src", path), "utf8");
   const css = (name: string) => read(`board/${name}`);
@@ -260,6 +325,9 @@ describe("board touch targets", () => {
     expect(css("radial-menu.css")).toMatch(/\.oe-radial__item[^}]*min-height: var\(--target-min\)/s);
     expect(css("radial-menu.css")).toMatch(/\.oe-radial__item[^}]*min-width: var\(--target-min\)/s);
     expect(css("focus-curtain.css")).toMatch(/\.oe-curtain__handle[^}]*var\(--target-min\)/s);
+    expect(css("board-header.css")).toMatch(/\.oe-board-header__period-chip[^}]*min-height: var\(--target-min\)/s);
+    expect(css("board-canvas.css")).toMatch(/\.oe-board-canvas__preset-btn[^}]*min-height: var\(--target-min\)/s);
     expect(read("primitives/button.css")).toMatch(/\.oe-button \{[^}]*min-height: var\(--target-min\)[^}]*min-width: var\(--target-min\)/s);
   });
 });
+

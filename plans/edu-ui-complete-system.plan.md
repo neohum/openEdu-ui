@@ -1,6 +1,6 @@
 ---
 plan: edu-ui-complete-system
-status: approved
+status: done
 risk: medium
 owner: neohum
 ---

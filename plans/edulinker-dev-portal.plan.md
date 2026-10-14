@@ -1,6 +1,6 @@
 ---
 plan: edulinker-dev-portal
-status: approved
+status: done
 risk: medium
 owner: neohum
 ---

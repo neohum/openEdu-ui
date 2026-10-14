@@ -7,8 +7,18 @@ import { join } from "node:path";
 import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 import {
-  AnnotatableText, ExamNavigator, ItemRenderer, TestPaperLayout, isAnswered, mmss,
-  mergeRanges, segments, type AnswerValue,
+  AnnotatableText,
+  ExamNavigator,
+  ItemRenderer,
+  MathEquationItem,
+  TestPaperLayout,
+  TwoColumnExamLayout,
+  isAnswered,
+  mmss,
+  mergeRanges,
+  parseMathEquationTokens,
+  segments,
+  type AnswerValue,
 } from "../src/index.ts";
 
 const items = paper.parse(samplePaper).items;
@@ -299,3 +309,55 @@ describe("TestPaperLayout", () => {
     expect(css).toMatch(/@media \(min-width: 40\.0625rem\)[\s\S]*\.oe-paper\[data-has-side\] \{ grid-template-columns: minmax\(0, 1fr\) minmax\(0, 1fr\)/);
   });
 });
+
+describe("MathEquationItem", () => {
+  it("parses fraction, sqrt, superscript, and subscript tokens into semantic math DOM and syncs with MathSymbolToolbar", async () => {
+    const tokens = parseMathEquationTokens("\\frac{3}{4} + \\sqrt{16} + x^2 + a_1 = ?");
+    expect(tokens.some((t) => t.type === "frac")).toBe(true);
+    expect(tokens.some((t) => t.type === "sqrt")).toBe(true);
+    expect(tokens.some((t) => t.type === "sup")).toBe(true);
+    expect(tokens.some((t) => t.type === "sub")).toBe(true);
+
+    const onChange = vi.fn();
+    const { container } = render(
+      <MathEquationItem
+        number={5}
+        points={5}
+        stem="다음 수식을 계산하시오."
+        equation="\\frac{3}{4} + \\sqrt{16} + x^2 = ?"
+        onChange={onChange}
+      />,
+    );
+
+    expect(container.querySelector("[data-token-type='frac']")).toBeInTheDocument();
+    expect(container.querySelector("[data-token-type='sqrt']")).toBeInTheDocument();
+    expect(container.querySelector("[data-token-type='sup']")).toBeInTheDocument();
+
+    const fracBtn = screen.getByRole("button", { name: "분수 (a/b)" });
+    await userEvent.click(fracBtn);
+    expect(onChange).toHaveBeenLastCalledWith("a/b");
+    expect(screen.getByRole("textbox", { name: "수식 답안 입력" })).toHaveValue("a/b");
+  });
+});
+
+describe("TwoColumnExamLayout", () => {
+  it("renders left passage, vertical divider, right questions, and page footer", () => {
+    render(
+      <TwoColumnExamLayout
+        header={<h2>2026학년도 1학기 기말고사</h2>}
+        passage={<p>다음 글을 읽고 물음에 답하시오.</p>}
+        passageTitle="[1~2] 지문"
+        questions={<p>1. 위 글의 중심 생각은?</p>}
+        pageNumber={1}
+        totalPages={4}
+      />,
+    );
+
+    expect(screen.getByText("2026학년도 1학기 기말고사")).toBeInTheDocument();
+    expect(screen.getByTestId("two-column-passage")).toHaveTextContent("[1~2] 지문");
+    expect(screen.getByTestId("two-column-divider")).toBeInTheDocument();
+    expect(screen.getByTestId("two-column-right")).toHaveTextContent("1. 위 글의 중심 생각은?");
+    expect(screen.getByTestId("two-column-footer")).toHaveTextContent("- 1 / 4 -");
+  });
+});
+
