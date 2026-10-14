@@ -1,0 +1,244 @@
+@layer components {
+  .oe-math-eq-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    word-break: keep-all;
+  }
+
+  .oe-math-eq-item__header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+
+  .oe-math-eq-item__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+  }
+
+  .oe-math-eq-item__stem {
+    flex: 1;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+  }
+
+  .oe-math-eq-item__points {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-fg-muted);
+    white-space: nowrap;
+  }
+
+  .oe-math-eq-item__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .oe-math-eq__formula {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .oe-math-eq__frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    padding-inline: var(--space-1);
+  }
+
+  .oe-math-eq__frac-num,
+  .oe-math-eq__frac-den {
+    font-size: var(--font-size-sm);
+    line-height: 1.1;
+  }
+
+  .oe-math-eq__frac-bar {
+    width: 100%;
+    min-width: 1rem;
+    height: 1.5px;
+    background: currentColor;
+    margin-block: var(--space-1);
+  }
+
+  .oe-math-eq__sqrt {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .oe-math-eq__sqrt-sign {
+    font-weight: 700;
+    margin-right: var(--space-1);
+  }
+
+  .oe-math-eq__sqrt-radicand {
+    border-top: 1.5px solid currentColor;
+    padding-inline: var(--space-1);
+  }
+
+  .oe-math-eq__script {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .oe-math-eq__sup,
+  .oe-math-eq__sub {
+    font-size: var(--font-size-xs);
+  }
+
+  .oe-math-eq-item__answer-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .oe-math-eq-item__input-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .oe-math-eq-item__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
+  .oe-math-eq-item__input {
+    min-height: var(--target-min);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    font-size: var(--font-size-base);
+  }
+
+  .oe-math-eq-item__preview {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-sunken);
+    border: 1px dashed var(--color-border);
+  }
+
+  /* TwoColumnExamLayout */
+  .oe-two-col-exam {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    word-break: keep-all;
+  }
+
+  .oe-two-col-exam__header {
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--color-fg);
+  }
+
+  .oe-two-col-exam__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: var(--space-4);
+    align-items: stretch;
+  }
+
+  .oe-two-col-exam[data-divider="false"] .oe-two-col-exam__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .oe-two-col-exam[data-ratio="4:6"] .oe-two-col-exam__body {
+    grid-template-columns: minmax(0, 2fr) auto minmax(0, 3fr);
+  }
+
+  .oe-two-col-exam[data-ratio="6:4"] .oe-two-col-exam__body {
+    grid-template-columns: minmax(0, 3fr) auto minmax(0, 2fr);
+  }
+
+  .oe-two-col-exam__divider {
+    width: 1px;
+    background: var(--color-border);
+    align-self: stretch;
+  }
+
+  .oe-two-col-exam__col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+  }
+
+  .oe-two-col-exam__passage-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-sunken);
+  }
+
+  .oe-two-col-exam__passage-header {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-fg);
+  }
+
+  .oe-two-col-exam__passage-body {
+    font-size: var(--font-size-sm);
+    line-height: 1.65;
+  }
+
+  .oe-two-col-exam__footer {
+    display: flex;
+    justify-content: center;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    color: var(--color-fg-muted);
+  }
+}
+
+@media print {
+  .oe-two-col-exam {
+    border: none;
+    padding: var(--space-0);
+    break-inside: avoid;
+  }
+
+  .oe-two-col-exam__divider {
+    background: var(--color-fg);
+  }
+}
