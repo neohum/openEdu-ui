@@ -49,3 +49,10 @@ docs/behavior-specs.md
 docs/HARNESS.md
 docs/adr/
 Dockerfile.sandbox
+
+# Infrastructure, Railway remediation & secrets (local only)
+scripts/all_railway_variables.json
+scripts/*audit*.json
+scripts/generate_secrets.py
+scripts/railway_*.py
+
