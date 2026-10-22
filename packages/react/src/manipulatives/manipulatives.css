@@ -1,3 +1,5 @@
+@import "./color-figure.css";
+
 @layer components {
   .oe-blocks, .oe-fraction { display: flex; flex-direction: column; gap: var(--space-4); }
   .oe-blocks__places { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-6); }

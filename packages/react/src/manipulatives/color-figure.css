@@ -1,0 +1,345 @@
+@layer components {
+  /* ==========================================================================
+     ColorFigure Component Styles (openEdu Design System)
+     56px 전자칠판 터치 친화적 조작 인터페이스 및 다크/라이트 서피스 토큰 지원
+     ========================================================================== */
+
+  .oe-color-figure,
+  .openedu-color-figure {
+    --figure-touch-min: 56px;
+    --figure-border: var(--color-border, #cbd5e1);
+    --figure-bg: var(--color-surface, #ffffff);
+    --figure-fg: var(--color-fg, #0f172a);
+    --figure-accent: var(--color-accent, #4f46e5);
+    --figure-toolbar-bg: var(--color-surface-subtle, #f8fafc);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: var(--radius-lg, 12px);
+    border: 1px solid var(--figure-border);
+    background-color: var(--figure-bg);
+    color: var(--figure-fg);
+    overflow: hidden;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
+  /* --------------------------------------------------------------------------
+     서피스 모드 변형 (Surface Modes)
+     -------------------------------------------------------------------------- */
+
+  /* 1. board: 교실 전자칠판 전용 딥그린/다크 몰입형 서피스 */
+  .oe-color-figure[data-surface="board"],
+  .oe-color-figure--board {
+    --figure-border: rgba(255, 255, 255, 0.16);
+    --figure-bg: var(--oe-theme-surface, #133827);
+    --figure-fg: var(--oe-theme-fg, #ffffff);
+    --figure-accent: var(--oe-theme-accent, #fde047);
+    --figure-toolbar-bg: #0d251a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  /* 2. desktop: PC/학습지 깔끔한 클린 화이트 서피스 */
+  .oe-color-figure[data-surface="desktop"],
+  .oe-color-figure--desktop {
+    --figure-border: #e2e8f0;
+    --figure-bg: #ffffff;
+    --figure-fg: #0f172a;
+    --figure-accent: #4f46e5;
+    --figure-toolbar-bg: #f8fafc;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  }
+
+  /* 3. mobile: 스마트폰/소형 태블릿 터치 최적화 서피스 */
+  .oe-color-figure[data-surface="mobile"],
+  .oe-color-figure--mobile {
+    --figure-border: #e2e8f0;
+    --figure-bg: #ffffff;
+    --figure-fg: #0f172a;
+    --figure-accent: #4f46e5;
+    --figure-toolbar-bg: #f8fafc;
+  }
+
+  /* --------------------------------------------------------------------------
+     상단 컨트롤 툴바 (Toolbar: 56px 전자칠판 터치 규격)
+     -------------------------------------------------------------------------- */
+
+  .oe-color-figure__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2, 8px);
+    padding: var(--space-2, 8px) var(--space-3, 12px);
+    min-height: var(--figure-touch-min);
+    background-color: var(--figure-toolbar-bg);
+    border-bottom: 1px solid var(--figure-border);
+    z-index: 10;
+  }
+
+  .oe-color-figure__title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2, 8px);
+  }
+
+  .oe-color-figure__title {
+    font-size: var(--font-size-md, 1rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--figure-fg);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 280px;
+  }
+
+  .oe-color-figure__controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2, 8px);
+  }
+
+  /* --------------------------------------------------------------------------
+     터치 타깃 버튼 (Buttons: 최소 56px 터치 면적 보장)
+     -------------------------------------------------------------------------- */
+
+  .oe-color-figure__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2, 6px);
+    min-width: var(--figure-touch-min);
+    min-height: var(--figure-touch-min);
+    height: var(--figure-touch-min);
+    padding: 0 var(--space-3, 14px);
+    box-sizing: border-box;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid var(--figure-border);
+    background-color: var(--figure-bg);
+    color: var(--figure-fg);
+    font-size: var(--font-size-sm, 0.875rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--motion-fast, 150ms) ease,
+                border-color var(--motion-fast, 150ms) ease,
+                color var(--motion-fast, 150ms) ease,
+                transform var(--motion-fast, 150ms) ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .oe-color-figure__btn:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--figure-accent);
+  }
+
+  .oe-color-figure[data-surface="desktop"] .oe-color-figure__btn:hover:not(:disabled),
+  .oe-color-figure[data-surface="mobile"] .oe-color-figure__btn:hover:not(:disabled) {
+    background-color: #f1f5f9;
+  }
+
+  .oe-color-figure__btn:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  .oe-color-figure__btn:focus-visible {
+    outline: 2px solid var(--figure-accent);
+    outline-offset: 2px;
+  }
+
+  .oe-color-figure__btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* 활성화 토글 상태 (aria-pressed / data-active) */
+  .oe-color-figure__btn[aria-pressed="true"],
+  .oe-color-figure__btn[data-active="true"] {
+    background-color: var(--figure-accent);
+    border-color: var(--figure-accent);
+    color: #0f172a;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .oe-color-figure[data-surface="board"] .oe-color-figure__btn[aria-pressed="true"],
+  .oe-color-figure[data-surface="board"] .oe-color-figure__btn[data-active="true"] {
+    background-color: var(--figure-accent);
+    color: #0d251a;
+  }
+
+  .oe-color-figure__btn i {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .oe-color-figure__btn-label {
+    font-size: var(--font-size-sm, 0.875rem);
+    line-height: 1;
+  }
+
+  /* 줌 버튼 그룹 */
+  .oe-color-figure__zoom-group {
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--radius-md, 8px);
+    overflow: hidden;
+    border: 1px solid var(--figure-border);
+  }
+
+  .oe-color-figure__zoom-group .oe-color-figure__btn {
+    border-radius: 0;
+    border: none;
+    border-right: 1px solid var(--figure-border);
+    min-width: 48px;
+    padding: 0 10px;
+  }
+
+  .oe-color-figure__zoom-group .oe-color-figure__btn:last-child {
+    border-right: none;
+  }
+
+  .oe-color-figure__zoom-readout {
+    font-size: var(--font-size-xs, 0.8rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+  }
+
+  /* --------------------------------------------------------------------------
+     뷰포트 및 iframe 영역
+     -------------------------------------------------------------------------- */
+
+  .oe-color-figure__viewport {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    min-height: 240px;
+    overflow: hidden;
+    background-color: var(--figure-bg);
+  }
+
+  .oe-color-figure__iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    border: none;
+    display: block;
+    background: transparent;
+  }
+
+  /* --------------------------------------------------------------------------
+     로딩 스켈레톤 및 오버레이
+     -------------------------------------------------------------------------- */
+
+  .oe-color-figure__loading-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--figure-bg);
+  }
+
+  .oe-color-figure__skeleton {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+  }
+
+  .oe-color-figure__loading-text {
+    position: relative;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2, 8px);
+    padding: 10px 18px;
+    border-radius: var(--radius-full, 9999px);
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: var(--font-size-sm, 0.875rem);
+    font-weight: 500;
+  }
+
+  /* --------------------------------------------------------------------------
+     폴백 및 오류 상태 (Fallback State)
+     -------------------------------------------------------------------------- */
+
+  .oe-color-figure__fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6, 24px);
+    text-align: center;
+    color: var(--figure-fg);
+  }
+
+  .oe-color-figure__fallback-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-3, 12px);
+    color: var(--figure-accent);
+    opacity: 0.8;
+  }
+
+  .oe-color-figure__fallback-title {
+    font-size: var(--font-size-lg, 1.125rem);
+    font-weight: 700;
+    margin: 0 0 var(--space-2, 6px) 0;
+  }
+
+  .oe-color-figure__fallback-desc {
+    font-size: var(--font-size-sm, 0.875rem);
+    opacity: 0.75;
+    max-width: 380px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* --------------------------------------------------------------------------
+     모바일 반응형 최적화
+     -------------------------------------------------------------------------- */
+
+  @media (max-width: 640px) {
+    .oe-color-figure__toolbar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-2, 8px);
+      padding: var(--space-2, 8px);
+    }
+
+    .oe-color-figure__controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr) auto;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .oe-color-figure__btn {
+      width: 100%;
+      min-width: 0;
+      padding: 0 6px;
+    }
+
+    .oe-color-figure__zoom-group {
+      grid-column: span 4;
+      display: flex;
+      width: 100%;
+    }
+
+    .oe-color-figure__zoom-group .oe-color-figure__btn {
+      flex: 1;
+    }
+  }
+}
