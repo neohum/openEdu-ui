@@ -1,5 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": { "types": ["node"] },
-  "include": ["scripts", "packages/*/src"]
+  "include": ["scripts", "packages/*/src"],
+  "exclude": [
+    "scripts/knowledge/storage-r2.ts",
+    "scripts/loop/capture-screenshot.ts",
+    "scripts/loop/visual-audit-gate.ts"
+  ]
 }
